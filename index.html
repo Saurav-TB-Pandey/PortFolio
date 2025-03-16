@@ -1,1329 +1,1392 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Saurav Kumar | Software Developer</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <style>
-      :root {
-        --primary-color: #3498db;
-        --secondary-color: #2c3e50;
-        --accent-color: #e74c3c;
-        --light-color: #ecf0f1;
-        --dark-color: #2c3e50;
-        --text-color: #333;
-        --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        color: var(--text-color);
-        background-color: #f8f9fa;
-        line-height: 1.6;
-      }
-
-      .container {
-        width: 90%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-      }
-
-      /* Header */
-      header {
-        background-color: var(--primary-color);
-        color: white;
-        padding: 20px 0;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-        box-shadow: var(--box-shadow);
-      }
-
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo {
-        font-size: 24px;
-        font-weight: bold;
-      }
-
-      .nav-links {
-        display: flex;
-        list-style: none;
-      }
-
-      .nav-links li {
-        margin-left: 30px;
-      }
-
-      .nav-links a {
-        color: white;
-        text-decoration: none;
-        transition: 0.3s;
-      }
-
-      .nav-links a:hover {
-        color: var(--light-color);
-      }
-
-      .hamburger {
-        display: none;
-        cursor: pointer;
-        font-size: 24px;
-      }
-
-      /* Hero Section */
-      .hero {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        background: linear-gradient(
-            rgba(44, 62, 80, 0.8),
-            rgba(44, 62, 80, 0.8)
-          ),
-          url("/api/placeholder/1920/1080") center/cover;
-        color: white;
-        text-align: center;
-        padding-top: 80px;
-      }
-
-      .hero-content {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      .hero h1 {
-        font-size: 3.5rem;
-        margin-bottom: 20px;
-      }
-
-      .hero p {
-        font-size: 1.2rem;
-        margin-bottom: 30px;
-      }
-
-      .social-icons {
-        margin-top: 30px;
-      }
-
-      .social-icons a {
-        color: white;
-        font-size: 24px;
-        margin: 0 15px;
-        transition: 0.3s;
-      }
-
-      .social-icons a:hover {
-        color: var(--primary-color);
-      }
-
-      /* Section Styles */
-      section {
-        padding: 80px 0;
-      }
-
-      section h2 {
-        text-align: center;
-        font-size: 2.5rem;
-        margin-bottom: 50px;
-        color: var(--secondary-color);
-        position: relative;
-      }
-
-      section h2::after {
-        content: "";
-        position: absolute;
-        bottom: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100px;
-        height: 4px;
-        background-color: var(--primary-color);
-      }
-
-      /* About Section */
-      .about {
-        background-color: white;
-      }
-
-      .about-content {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .about-text {
-        flex: 1;
-        min-width: 300px;
-        padding: 20px;
-      }
-
-      .about-text h3 {
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-        color: var(--secondary-color);
-      }
-
-      .btn {
-        display: inline-block;
-        background-color: var(--primary-color);
-        color: white;
-        padding: 12px 30px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: 0.3s;
-        margin-top: 20px;
-      }
-
-      .btn:hover {
-        background-color: var(--secondary-color);
-        transform: translateY(-3px);
-      }
-
-      /* Experience Section */
-      .experience {
-        background-color: #f8f9fa;
-      }
-
-      .timeline {
-        position: relative;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      .timeline::after {
-        content: "";
-        position: absolute;
-        width: 6px;
-        background-color: var(--primary-color);
-        top: 0;
-        bottom: 0;
-        left: 50%;
-        margin-left: -3px;
-      }
-
-      .timeline-item {
-        padding: 10px 40px;
-        position: relative;
-        width: 50%;
-        box-sizing: border-box;
-      }
-
-      .timeline-item::after {
-        content: "";
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        background-color: white;
-        border: 4px solid var(--primary-color);
-        border-radius: 50%;
-        top: 15px;
-        z-index: 1;
-      }
-
-      .left {
-        left: 0;
-      }
-
-      .right {
-        left: 50%;
-      }
-
-      .left::after {
-        right: -10px;
-      }
-
-      .right::after {
-        left: -10px;
-      }
-
-      .timeline-content {
-        padding: 20px;
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: var(--box-shadow);
-      }
-
-      .timeline-content h3 {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-        color: var(--secondary-color);
-      }
-
-      .timeline-content h4 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-        color: var(--primary-color);
-      }
-
-      .timeline-content .date {
-        color: var(--accent-color);
-        font-weight: bold;
-        margin-bottom: 15px;
-        display: block;
-      }
-
-      /* Projects Section */
-      .projects {
-        background-color: white;
-      }
-
-      .project-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-      }
-
-      .project-card {
-        background-color: #f8f9fa;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: var(--box-shadow);
-        transition: 0.3s;
-      }
-
-      .project-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-      }
-
-      .project-img {
-        height: 200px;
-        background-color: var(--primary-color);
-      }
-
-      .project-info {
-        padding: 20px;
-      }
-
-      .project-info h3 {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-        color: var(--secondary-color);
-      }
-
-      .project-info .date {
-        color: var(--accent-color);
-        margin-bottom: 15px;
-        display: block;
-      }
-
-      /* Skills Section */
-      .skills {
-        background-color: #f8f9fa;
-      }
-
-      .skills-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-      }
-
-      .skill-category {
-        flex: 1;
-        min-width: 280px;
-        max-width: 350px;
-        background-color: white;
-        padding: 25px;
-        border-radius: 8px;
-        box-shadow: var(--box-shadow);
-      }
-
-      .skill-category h3 {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-        color: var(--secondary-color);
-        text-align: center;
-        position: relative;
-      }
-
-      .skill-category h3::after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 50px;
-        height: 3px;
-        background-color: var(--primary-color);
-      }
-
-      .skill-list {
-        list-style: none;
-      }
-
-      .skill-list li {
-        margin-bottom: 10px;
-        padding-left: 20px;
-        position: relative;
-      }
-
-      .skill-list li::before {
-        content: "•";
-        color: var(--primary-color);
-        font-weight: bold;
-        position: absolute;
-        left: 0;
-      }
-
-      /* Education Section */
-      .education {
-        background-color: white;
-      }
-
-      .education-container {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      .education-item {
-        background-color: #f8f9fa;
-        padding: 25px;
-        border-radius: 8px;
-        box-shadow: var(--box-shadow);
-        margin-bottom: 30px;
-      }
-
-      .education-item h3 {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-        color: var(--secondary-color);
-      }
-
-      .education-item h4 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-        color: var(--primary-color);
-      }
-
-      .education-item .date {
-        color: var(--accent-color);
-        margin-bottom: 15px;
-        display: block;
-      }
-
-      /* Contact Section */
-      .contact {
-        background-color: #f8f9fa;
-      }
-
-      .contact-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
-        justify-content: center;
-      }
-
-      .contact-info {
-        flex: 1;
-        min-width: 300px;
-        max-width: 500px;
-      }
-
-      .contact-info h3 {
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-        color: var(--secondary-color);
-      }
-
-      .contact-details {
-        list-style: none;
-      }
-
-      .contact-details li {
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-      }
-
-      .contact-details i {
-        min-width: 30px;
-        color: var(--primary-color);
-        font-size: 1.2rem;
-      }
-
-      /* Footer */
-      footer {
-        background-color: var(--secondary-color);
-        color: white;
-        text-align: center;
-        padding: 30px 0;
-      }
-
-      .footer-social {
-        margin: 20px 0;
-      }
-
-      .footer-social a {
-        color: white;
-        font-size: 20px;
-        margin: 0 10px;
-        transition: 0.3s;
-      }
-
-      .footer-social a:hover {
-        color: var(--primary-color);
-      }
-
-      /* Additional styles for enhanced design */
-      :root {
-        --primary-color: #4285f4; /* Google Blue - more modern */
-        --secondary-color: #34495e; /* Darker shade for contrast */
-        --accent-color: #ea4335; /* Google Red - for accents */
-        --light-color: #f8f9fa;
-        --dark-color: #343a40;
-        --text-color: #212529;
-        --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        --transition-speed: 0.3s;
-      }
-
-      /* Profile image styles */
-      .profile-icon {
-        margin: 0 auto 30px;
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 5px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        transform: translateY(20px);
-        opacity: 0;
-        animation: fadeUp 1s ease forwards;
-        animation-delay: 0.5s;
-      }
-
-      .profile-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-
-      .profile-image:hover {
-        transform: scale(1.1);
-      }
-
-      /* Hero section animations */
-      .hero h1 {
-        transform: translateY(20px);
-        opacity: 0;
-        animation: fadeUp 1s ease forwards;
-        animation-delay: 0.8s;
-      }
-
-      .hero p {
-        transform: translateY(20px);
-        opacity: 0;
-        animation: fadeUp 1s ease forwards;
-        animation-delay: 1s;
-      }
-
-      .hero .social-icons {
-        transform: translateY(20px);
-        opacity: 0;
-        animation: fadeUp 1s ease forwards;
-        animation-delay: 1.2s;
-      }
-
-      /* Button styles */
-      .btn {
-        display: inline-block;
-        padding: 12px 28px;
-        border-radius: 50px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        text-decoration: none;
-        text-transform: uppercase;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        margin-right: 15px;
-        margin-top: 25px;
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
-      }
-
-      .btn::after {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background: rgba(255, 255, 255, 0.2);
-        transition: width 0.3s ease;
-        z-index: -1;
-      }
-
-      .btn:hover::after {
-        width: 100%;
-      }
-
-      .btn-primary {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .btn-secondary {
-        background-color: transparent;
-        color: var(--primary-color);
-        border: 2px solid var(--primary-color);
-      }
-
-      .btn:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-      }
-
-      /* Global animations */
-      @keyframes fadeUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes fadeIn {
-        to {
-          opacity: 1;
-        }
-      }
-
-      @keyframes slideInLeft {
-        from {
-          transform: translateX(-50px);
-          opacity: 0;
-        }
-        to {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      }
-
-      @keyframes slideInRight {
-        from {
-          transform: translateX(50px);
-          opacity: 0;
-        }
-        to {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      }
-
-      /* Responsive Styles */
-      @media (max-width: 992px) {
-        .timeline::after {
-          left: 31px;
-        }
-
-        .timeline-item {
-          width: 100%;
-          padding-left: 70px;
-          padding-right: 25px;
-        }
-
-        .timeline-item::after {
-          left: 21px;
-        }
-
-        .right {
-          left: 0;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .nav-links {
-          position: fixed;
-          background-color: var(--secondary-color);
-          height: 100vh;
-          width: 100%;
-          top: 80px;
-          left: -100%;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          transition: 0.5s;
-        }
-
-        .nav-links.active {
-          left: 0;
-        }
-
-        .nav-links li {
-          margin: 25px 0;
-        }
-
-        .hamburger {
-          display: block;
-        }
-
-        .hero h1 {
-          font-size: 2.5rem;
-        }
-
-        section h2 {
-          font-size: 2rem;
-        }
-      }
-
-      @media (max-width: 576px) {
-        .hero h1 {
-          font-size: 2rem;
-        }
-
-        .about-img,
-        .contact-form {
-          margin-top: 30px;
-        }
-
-        section {
-          padding: 60px 0;
-        }
-      }
-      /* Skills section enhancements */
-      .skill-category {
-        transform: translateY(20px);
-        opacity: 0;
-        animation: fadeUp 0.6s ease forwards;
-        transition: all 0.3s ease;
-        border-radius: 12px;
-        border-left: 4px solid var(--primary-color);
-      }
-
-      .skill-category:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-      }
-
-      .skill-category:nth-child(1) {
-        animation-delay: 0.1s;
-      }
-      .skill-category:nth-child(2) {
-        animation-delay: 0.2s;
-      }
-      .skill-category:nth-child(3) {
-        animation-delay: 0.3s;
-      }
-      .skill-category:nth-child(4) {
-        animation-delay: 0.4s;
-      }
-      .skill-category:nth-child(5) {
-        animation-delay: 0.5s;
-      }
-      .skill-category:nth-child(6) {
-        animation-delay: 0.6s;
-      }
-
-      /* Project card enhancements */
-      .project-card {
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeUp 0.8s ease forwards;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border-radius: 15px;
-        overflow: hidden;
-        border: none;
-      }
-
-      .project-card:nth-child(1) {
-        animation-delay: 0.2s;
-      }
-      .project-card:nth-child(2) {
-        animation-delay: 0.4s;
-      }
-      .project-card:nth-child(3) {
-        animation-delay: 0.6s;
-      }
-
-      .project-card:hover {
-        transform: translateY(-15px) scale(1.02);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      }
-
-      .project-img {
-        height: 200px;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .project-img::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          135deg,
-          var(--primary-color) 0%,
-          var(--accent-color) 100%
-        );
-        opacity: 0.8;
-        transition: all 0.3s ease;
-      }
-
-      .project-img::after {
-        content: "View Details";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-weight: bold;
-        opacity: 0;
-        transition: all 0.3s ease;
-      }
-
-      .project-card:hover .project-img::after {
-        opacity: 1;
-      }
-
-      /* Timeline animations */
-      .timeline-item {
-        opacity: 0;
-      }
-
-      .timeline-item.left {
-        transform: translateX(-30px);
-        animation: slideInLeft 0.8s ease forwards;
-      }
-
-      .timeline-item.right {
-        transform: translateX(30px);
-        animation: slideInRight 0.8s ease forwards;
-      }
-
-      .timeline-item:nth-child(1) {
-        animation-delay: 0.2s;
-      }
-      .timeline-item:nth-child(2) {
-        animation-delay: 0.4s;
-      }
-      .timeline-item:nth-child(3) {
-        animation-delay: 0.6s;
-      }
-
-      /* Education section animations */
-      .education-item {
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeUp 0.8s ease forwards;
-        transition: all 0.3s ease;
-        border-radius: 12px;
-        border-left: 4px solid var(--primary-color);
-      }
-
-      .education-item:hover {
-        transform: translateX(10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-      }
-
-      .education-item:nth-child(1) {
-        animation-delay: 0.2s;
-      }
-      .education-item:nth-child(2) {
-        animation-delay: 0.4s;
-      }
-      .education-item:nth-child(3) {
-        animation-delay: 0.6s;
-      }
-
-      /* Scrollbar styling */
-      ::-webkit-scrollbar {
-        width: 10px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: var(--primary-color);
-        border-radius: 10px;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: var(--secondary-color);
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Header -->
-    <header>
-      <div class="container">
-        <nav>
-          <div class="logo">Saurav Kumar</div>
-          <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <div class="hamburger">
-            <i class="fas fa-bars"></i>
-          </div>
-        </nav>
-      </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-content">
-          <div class="profile-icon">
-            <img
-              src="https://media.licdn.com/dms/image/v2/D4D03AQEUJeJgHGvZEg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1694184065136?e=1747267200&v=beta&t=Cg_OznKBriSWb9NxtwCDwD04S_8ham2z0zgVfMbAq5k"
-              alt="Saurav Kumar"
-              class="profile-image"
-            />
-          </div>
-          <h1>Saurav Kumar</h1>
-          <p>
-            🌟 Passionate Software Developer | MERN Stack Enthusiast |
-            Innovative Problem Solver 🌟
-          </p>
-          <div class="social-icons">
-            <a href="https://github.com/Saurav-TB-Pandey" target="_blank"
-              ><i class="fab fa-github"></i
-            ></a>
-            <a href="https://www.linkedin.com/in/pandeysaurav/" target="_blank"
-              ><i class="fab fa-linkedin"></i
-            ></a>
-            <a href="mailto:pandeysaurav878@gmail.com"
-              ><i class="fas fa-envelope"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-      <div class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-          <div class="about-text">
-            <h3>Hello! I'm Saurav Kumar</h3>
-            <p>
-              A dedicated software developer based in Mohali, Punjab,
-              specializing in web system development with the MERN stack. I am
-              driven by a commitment to enhancing operational efficiency and
-              delivering high-quality software solutions that meet the dynamic
-              needs of users and businesses.
-            </p>
-            <p>
-              Currently, I hold the position of Associate Software Developer at
-              smartData Enterprises, where I lead end-to-end development
-              projects and collaborate with cross-functional teams to ensure
-              timely and efficient application delivery. My journey in this
-              field began as an intern at the same organization, where I honed
-              my web development skills under the guidance of experienced
-              professionals and contributed to various successful project
-              launches.
-            </p>
-            <p>
-              During my tenure as a Technical Associate at Caelius Consulting, I
-              was instrumental in API performance analysis and development,
-              significantly improving service efficiency and ensuring
-              operational continuity. My academic background in Computer Science
-              Engineering provides me with a solid technical foundation, which I
-              continuously enhance through professional development and
-              certifications, including MuleSoft Certified Integration Associate
-              and training in Python.
-            </p>
-            <div class="about-cta">
-              <a href="#contact" class="btn btn-primary">Contact Me</a>
-              <a href="#projects" class="btn btn-secondary">View Projects</a>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Saurav Kumar | Software Developer</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
+        <style>
+            :root {
+                --primary-color: #3498db;
+                --secondary-color: #2c3e50;
+                --accent-color: #e74c3c;
+                --light-color: #ecf0f1;
+                --dark-color: #2c3e50;
+                --text-color: #333;
+                --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                color: var(--text-color);
+                background-color: #f8f9fa;
+                line-height: 1.6;
+            }
+
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 15px;
+            }
+
+            /* Header */
+            header {
+                background-color: var(--primary-color);
+                color: white;
+                padding: 20px 0;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+                box-shadow: var(--box-shadow);
+            }
+
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            .nav-links {
+                display: flex;
+                list-style: none;
+            }
+
+            .nav-links li {
+                margin-left: 30px;
+            }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                transition: 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: var(--light-color);
+            }
+
+            .hamburger {
+                display: none;
+                cursor: pointer;
+                font-size: 24px;
+            }
+
+            /* Hero Section */
+            .hero {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                background: linear-gradient(
+                        rgba(44, 62, 80, 0.8),
+                        rgba(44, 62, 80, 0.8)
+                    ),
+                    url("/api/placeholder/1920/1080") center/cover;
+                color: white;
+                text-align: center;
+                padding-top: 80px;
+            }
+
+            .hero-content {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+                margin-bottom: 20px;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
+            }
+
+            .social-icons {
+                margin-top: 30px;
+            }
+
+            .social-icons a {
+                color: white;
+                font-size: 24px;
+                margin: 0 15px;
+                transition: 0.3s;
+            }
+
+            .social-icons a:hover {
+                color: var(--primary-color);
+            }
+
+            /* Section Styles */
+            section {
+                padding: 80px 0;
+            }
+
+            section h2 {
+                text-align: center;
+                font-size: 2.5rem;
+                margin-bottom: 50px;
+                color: var(--secondary-color);
+                position: relative;
+            }
+
+            section h2::after {
+                content: "";
+                position: absolute;
+                bottom: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100px;
+                height: 4px;
+                background-color: var(--primary-color);
+            }
+
+            /* About Section */
+            .about {
+                background-color: white;
+            }
+
+            .about-content {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .about-text {
+                flex: 1;
+                min-width: 300px;
+                padding: 20px;
+            }
+
+            .about-text h3 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+                color: var(--secondary-color);
+            }
+
+            .btn {
+                display: inline-block;
+                background-color: var(--primary-color);
+                color: white;
+                padding: 12px 30px;
+                border-radius: 5px;
+                text-decoration: none;
+                font-weight: bold;
+                transition: 0.3s;
+                margin-top: 20px;
+            }
+
+            .btn:hover {
+                background-color: var(--secondary-color);
+                transform: translateY(-3px);
+            }
+
+            /* Experience Section */
+            .experience {
+                background-color: #f8f9fa;
+            }
+
+            .timeline {
+                position: relative;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .timeline::after {
+                content: "";
+                position: absolute;
+                width: 6px;
+                background-color: var(--primary-color);
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                margin-left: -3px;
+            }
+
+            .timeline-item {
+                padding: 10px 40px;
+                position: relative;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .timeline-item::after {
+                content: "";
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                background-color: white;
+                border: 4px solid var(--primary-color);
+                border-radius: 50%;
+                top: 15px;
+                z-index: 1;
+            }
+
+            .left {
+                left: 0;
+            }
+
+            .right {
+                left: 50%;
+            }
+
+            .left::after {
+                right: -10px;
+            }
+
+            .right::after {
+                left: -10px;
+            }
+
+            .timeline-content {
+                padding: 20px;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: var(--box-shadow);
+            }
+
+            .timeline-content h3 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+                color: var(--secondary-color);
+            }
+
+            .timeline-content h4 {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+                color: var(--primary-color);
+            }
+
+            .timeline-content .date {
+                color: var(--accent-color);
+                font-weight: bold;
+                margin-bottom: 15px;
+                display: block;
+            }
+
+            /* Projects Section */
+            .projects {
+                background-color: white;
+            }
+
+            .project-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+
+            .project-card {
+                background-color: #f8f9fa;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: var(--box-shadow);
+                transition: 0.3s;
+            }
+
+            .project-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .project-img {
+                height: 200px;
+                background-color: var(--primary-color);
+            }
+
+            .project-info {
+                padding: 20px;
+            }
+
+            .project-info h3 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+                color: var(--secondary-color);
+            }
+
+            .project-info .date {
+                color: var(--accent-color);
+                margin-bottom: 15px;
+                display: block;
+            }
+
+            /* Skills Section */
+            .skills {
+                background-color: #f8f9fa;
+            }
+
+            .skills-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .skill-category {
+                flex: 1;
+                min-width: 250px;
+                max-width: 350px;
+                background-color: white;
+                padding: 25px;
+                border-radius: 8px;
+                box-shadow: var(--box-shadow);
+            }
+
+            .skill-category h3 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+                color: var(--secondary-color);
+                text-align: center;
+                position: relative;
+            }
+
+            .skill-category h3::after {
+                content: "";
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 50px;
+                height: 3px;
+                background-color: var(--primary-color);
+            }
+
+            .skill-list {
+                list-style: none;
+            }
+
+            .skill-list li {
+                margin-bottom: 10px;
+                padding-left: 20px;
+                position: relative;
+            }
+
+            .skill-list li::before {
+                content: "•";
+                color: var(--primary-color);
+                font-weight: bold;
+                position: absolute;
+                left: 0;
+            }
+
+            /* Education Section */
+            .education {
+                background-color: white;
+            }
+
+            .education-container {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .education-item {
+                background-color: #f8f9fa;
+                padding: 25px;
+                border-radius: 8px;
+                box-shadow: var(--box-shadow);
+                margin-bottom: 30px;
+            }
+
+            .education-item h3 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+                color: var(--secondary-color);
+            }
+
+            .education-item h4 {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+                color: var(--primary-color);
+            }
+
+            .education-item .date {
+                color: var(--accent-color);
+                margin-bottom: 15px;
+                display: block;
+            }
+
+            /* Contact Section */
+            .contact {
+                background-color: #f8f9fa;
+            }
+
+            .contact-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 30px;
+                justify-content: center;
+            }
+
+            .contact-info {
+                flex: 1;
+                min-width: 300px;
+                max-width: 500px;
+            }
+
+            .contact-info h3 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+                color: var(--secondary-color);
+            }
+
+            .contact-details {
+                list-style: none;
+                margin-top: 10px;
+            }
+
+            .contact-details li {
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+            }
+
+            .contact-details i {
+                min-width: 30px;
+                color: var(--primary-color);
+                font-size: 1.2rem;
+            }
+
+            /* Footer */
+            footer {
+                background-color: var(--secondary-color);
+                color: white;
+                text-align: center;
+                padding: 30px 0;
+            }
+
+            .footer-social {
+                margin: 20px 0;
+            }
+
+            .footer-social a {
+                color: white;
+                font-size: 20px;
+                margin: 0 10px;
+                transition: 0.3s;
+            }
+
+            .footer-social a:hover {
+                color: var(--primary-color);
+            }
+
+            /* Additional styles for enhanced design */
+            :root {
+                --primary-color: #4285f4; /* Google Blue - more modern */
+                --secondary-color: #34495e; /* Darker shade for contrast */
+                --accent-color: #ea4335; /* Google Red - for accents */
+                --light-color: #f8f9fa;
+                --dark-color: #343a40;
+                --text-color: #212529;
+                --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                --transition-speed: 0.3s;
+            }
+
+            /* Profile image styles */
+            .profile-icon {
+                margin: 0 auto 30px;
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                overflow: hidden;
+                border: 5px solid rgba(255, 255, 255, 0.3);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                transform: translateY(20px);
+                opacity: 0;
+                animation: fadeUp 1s ease forwards;
+                animation-delay: 0.5s;
+            }
+
+            .profile-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .profile-image:hover {
+                transform: scale(1.1);
+            }
+
+            /* Hero section animations */
+            .hero h1 {
+                transform: translateY(20px);
+                opacity: 0;
+                animation: fadeUp 1s ease forwards;
+                animation-delay: 0.8s;
+            }
+
+            .hero p {
+                transform: translateY(20px);
+                opacity: 0;
+                animation: fadeUp 1s ease forwards;
+                animation-delay: 1s;
+            }
+
+            .hero .social-icons {
+                transform: translateY(20px);
+                opacity: 0;
+                animation: fadeUp 1s ease forwards;
+                animation-delay: 1.2s;
+            }
+
+            /* Button styles */
+            .btn {
+                display: inline-block;
+                padding: 12px 28px;
+                border-radius: 50px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                text-decoration: none;
+                text-transform: uppercase;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                margin-right: 15px;
+                margin-top: 25px;
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+            }
+
+            .btn::after {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: rgba(255, 255, 255, 0.2);
+                transition: width 0.3s ease;
+                z-index: -1;
+            }
+
+            .btn:hover::after {
+                width: 100%;
+            }
+
+            .btn-primary {
+                background-color: var(--primary-color);
+                color: white;
+            }
+
+            .btn-secondary {
+                background-color: transparent;
+                color: var(--primary-color);
+                border: 2px solid var(--primary-color);
+            }
+
+            .btn:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            }
+
+            /* Global animations */
+            @keyframes fadeUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeIn {
+                to {
+                    opacity: 1;
+                }
+            }
+
+            @keyframes slideInLeft {
+                from {
+                    transform: translateX(-50px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(50px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            /* Responsive Styles */
+            @media (max-width: 992px) {
+                .timeline::after {
+                    left: 31px;
+                }
+
+                .timeline-item {
+                    width: 100%;
+                    padding-left: 70px;
+                    padding-right: 25px;
+                }
+
+                .timeline-item::after {
+                    left: 21px;
+                }
+
+                .right {
+                    left: 0;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .nav-links {
+                    position: fixed;
+                    background-color: var(--secondary-color);
+                    height: 100vh;
+                    width: 100%;
+                    top: 80px;
+                    left: -100%;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    transition: 0.5s;
+                }
+
+                .nav-links.active {
+                    left: 0;
+                }
+
+                .nav-links li {
+                    margin: 25px 0;
+                }
+
+                .hamburger {
+                    display: block;
+                }
+
+                .hero h1 {
+                    font-size: 2.5rem;
+                }
+
+                section h2 {
+                    font-size: 2rem;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .hero h1 {
+                    font-size: 2rem;
+                }
+
+                .about-img,
+                .contact-form {
+                    margin-top: 30px;
+                }
+
+                section {
+                    padding: 60px 0;
+                }
+            }
+            /* Skills section enhancements */
+            .skill-category {
+                transform: translateY(20px);
+                opacity: 0;
+                animation: fadeUp 0.6s ease forwards;
+                transition: all 0.3s ease;
+                border-radius: 12px;
+                border-left: 4px solid var(--primary-color);
+            }
+
+            .skill-category:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            }
+
+            .skill-category:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+            .skill-category:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+            .skill-category:nth-child(3) {
+                animation-delay: 0.3s;
+            }
+            .skill-category:nth-child(4) {
+                animation-delay: 0.4s;
+            }
+            .skill-category:nth-child(5) {
+                animation-delay: 0.5s;
+            }
+            .skill-category:nth-child(6) {
+                animation-delay: 0.6s;
+            }
+
+            /* Project card enhancements */
+            .project-card {
+                opacity: 0;
+                transform: translateY(30px);
+                animation: fadeUp 0.8s ease forwards;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                border-radius: 15px;
+                overflow: hidden;
+                border: none;
+            }
+
+            .project-card:nth-child(1) {
+                animation-delay: 0.2s;
+            }
+            .project-card:nth-child(2) {
+                animation-delay: 0.4s;
+            }
+            .project-card:nth-child(3) {
+                animation-delay: 0.6s;
+            }
+
+            .project-card:hover {
+                transform: translateY(-15px) scale(1.02);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            }
+
+            .project-img {
+                height: 200px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .project-img::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    135deg,
+                    var(--primary-color) 0%,
+                    var(--accent-color) 100%
+                );
+                opacity: 0.8;
+                transition: all 0.3s ease;
+            }
+
+            .project-img::after {
+                content: "";
+                /* content: "View Details"; */
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+                font-weight: bold;
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+
+            .project-card:hover .project-img::after {
+                opacity: 1;
+            }
+
+            /* Timeline animations */
+            .timeline-item {
+                opacity: 0;
+            }
+
+            .timeline-item.left {
+                transform: translateX(-30px);
+                animation: slideInLeft 0.8s ease forwards;
+            }
+
+            .timeline-item.right {
+                transform: translateX(30px);
+                animation: slideInRight 0.8s ease forwards;
+            }
+
+            .timeline-item:nth-child(1) {
+                animation-delay: 0.2s;
+            }
+            .timeline-item:nth-child(2) {
+                animation-delay: 0.4s;
+            }
+            .timeline-item:nth-child(3) {
+                animation-delay: 0.6s;
+            }
+
+            /* Education section animations */
+            .education-item {
+                opacity: 0;
+                transform: translateY(30px);
+                animation: fadeUp 0.8s ease forwards;
+                transition: all 0.3s ease;
+                border-radius: 12px;
+                border-left: 4px solid var(--primary-color);
+            }
+
+            .education-item:hover {
+                transform: translateX(10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            }
+
+            .education-item:nth-child(1) {
+                animation-delay: 0.2s;
+            }
+            .education-item:nth-child(2) {
+                animation-delay: 0.4s;
+            }
+            .education-item:nth-child(3) {
+                animation-delay: 0.6s;
+            }
+
+            /* Scrollbar styling */
+            ::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: var(--primary-color);
+                border-radius: 10px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--secondary-color);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="logo">Saurav Kumar</div>
+                    <ul class="nav-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    <div class="hamburger">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </nav>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </header>
 
-    <!-- Experience Section -->
-    <section class="experience" id="experience">
-      <div class="container">
-        <h2>Professional Experience</h2>
-        <div class="timeline">
-          <div class="timeline-item left">
-            <div class="timeline-content">
-              <h3>Associate Software Developer</h3>
-              <h4>smartData Enterprises</h4>
-              <span class="date">September 2024 - Present</span>
-              <ul>
-                <li>
-                  Led end-to-end web system development utilizing the MERN stack
-                  to deliver high-quality software solutions.
-                </li>
-                <li>
-                  Engaged in continuous professional development to align with
-                  the latest technologies and methodologies.
-                </li>
-                <li>
-                  Collaborated with cross-functional teams to address
-                  challenges, ensuring project milestones are met with
-                  precision.
-                </li>
-                <li>
-                  Successfully designed and maintained scalable web applications
-                  using the MERN stack.
-                </li>
-                <li>
-                  Actively involved in the complete web development life cycle,
-                  ensuring timely and efficient project delivery.
-                </li>
-              </ul>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="profile-icon">
+                        <img
+                            src="https://media.licdn.com/dms/image/v2/D4D03AQEUJeJgHGvZEg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1694184065136?e=1747267200&v=beta&t=Cg_OznKBriSWb9NxtwCDwD04S_8ham2z0zgVfMbAq5k"
+                            alt="Saurav Kumar"
+                            class="profile-image"
+                        />
+                    </div>
+                    <h1>Saurav Kumar</h1>
+                    <p>
+                        🌟 Passionate Software Developer | MERN Stack Enthusiast
+                        | Innovative Problem Solver 🌟
+                    </p>
+                    <div class="social-icons">
+                        <a
+                            href="https://github.com/Saurav-TB-Pandey"
+                            target="_blank"
+                            ><i class="fab fa-github"></i
+                        ></a>
+                        <a
+                            href="https://www.linkedin.com/in/pandeysaurav/"
+                            target="_blank"
+                            ><i class="fab fa-linkedin"></i
+                        ></a>
+                        <a href="mailto:pandeysaurav878@gmail.com"
+                            ><i class="fas fa-envelope"></i
+                        ></a>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="timeline-item right">
-            <div class="timeline-content">
-              <h3>Software Developer Intern</h3>
-              <h4>smartData Enterprises</h4>
-              <span class="date">October 2023 - August 2024</span>
-              <ul>
-                <li>
-                  Received comprehensive training in MERN stack technology while
-                  partnering with senior developers on various projects to
-                  enhance practical knowledge.
-                </li>
-                <li>
-                  Supported the development of web applications by actively
-                  participating in team meetings and providing input on project
-                  design and implementation.
-                </li>
-                <li>
-                  Contributed to the successful launch of multiple web projects,
-                  applying learned concepts from the MERN stack training.
-                </li>
-                <li>
-                  Gained hands-on experience in web development as part of the
-                  learning process.
-                </li>
-              </ul>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Hello! I'm Saurav Kumar</h3>
+                        <p>
+                            A dedicated software developer based in Mohali,
+                            Punjab, specializing in web system development with
+                            the MERN stack. I am driven by a commitment to
+                            enhancing operational efficiency and delivering
+                            high-quality software solutions that meet the
+                            dynamic needs of users and businesses.
+                        </p>
+                        <p>
+                            Currently, I hold the position of Associate Software
+                            Developer, where I lead end-to-end development
+                            projects and collaborate with cross-functional teams
+                            to ensure timely and efficient application delivery.
+                            My journey in this field began as an intern, where I
+                            honed my web development skills under the guidance
+                            of experienced professionals and contributed to
+                            various successful project launches.
+                            <!-- Currently, I hold the position of Associate Software
+                            Developer at smartData Enterprises, where I lead
+                            end-to-end development projects and collaborate with
+                            cross-functional teams to ensure timely and
+                            efficient application delivery. My journey in this
+                            field began as an intern at the same organization,
+                            where I honed my web development skills under the
+                            guidance of experienced professionals and
+                            contributed to various successful project launches. -->
+                        </p>
+                        <p>
+                            During my tenure as a Technical Associate at Caelius
+                            Consulting, I was instrumental in API performance
+                            analysis and development, significantly improving
+                            service efficiency and ensuring operational
+                            continuity. My academic background in Computer
+                            Science Engineering provides me with a solid
+                            technical foundation, which I continuously enhance
+                            through professional development and certifications,
+                            including MuleSoft Certified Integration Associate
+                            and training in Python.
+                        </p>
+                        <div class="about-cta">
+                            <a href="#contact" class="btn btn-primary"
+                                >Contact Me</a
+                            >
+                            <a href="#projects" class="btn btn-secondary"
+                                >View Projects</a
+                            >
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="timeline-item left">
-            <div class="timeline-content">
-              <h3>Technical Associate</h3>
-              <h4>Caelius Consulting</h4>
-              <span class="date">February 2023 - August 2023</span>
-              <ul>
-                <li>
-                  Analyzed and monitored API performance, promptly addressing
-                  issues to maintain operational continuity.
-                </li>
-                <li>
-                  Worked with the MuleSoft platform to support the complete API
-                  development lifecycle.
-                </li>
-                <li>
-                  Improved service efficiency through comprehensive API
-                  development and monitoring.
-                </li>
-              </ul>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience" id="experience">
+            <div class="container">
+                <h2>Professional Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Associate Software Developer</h3>
+                            <h4></h4>
+                            <!-- <h4>smartData Enterprises</h4> -->
+                            <span class="date">September 2024 - Present</span>
+                            <ul>
+                                <li>
+                                    Led end-to-end web system development
+                                    utilizing the MERN stack to deliver
+                                    high-quality software solutions.
+                                </li>
+                                <li>
+                                    Engaged in continuous professional
+                                    development to align with the latest
+                                    technologies and methodologies.
+                                </li>
+                                <li>
+                                    Collaborated with cross-functional teams to
+                                    address challenges, ensuring project
+                                    milestones are met with precision.
+                                </li>
+                                <li>
+                                    Successfully designed and maintained
+                                    scalable web applications using the MERN
+                                    stack.
+                                </li>
+                                <li>
+                                    Actively involved in the complete web
+                                    development life cycle, ensuring timely and
+                                    efficient project delivery.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>Software Developer Intern</h3>
+                            <h4></h4>
+                            <!-- <h4>smartData Enterprises</h4> -->
+                            <span class="date">October 2023 - August 2024</span>
+                            <ul>
+                                <li>
+                                    Received comprehensive training in MERN
+                                    stack technology while partnering with
+                                    senior developers on various projects to
+                                    enhance practical knowledge.
+                                </li>
+                                <li>
+                                    Supported the development of web
+                                    applications by actively participating in
+                                    team meetings and providing input on project
+                                    design and implementation.
+                                </li>
+                                <li>
+                                    Contributed to the successful launch of
+                                    multiple web projects, applying learned
+                                    concepts from the MERN stack training.
+                                </li>
+                                <li>
+                                    Gained hands-on experience in web
+                                    development as part of the learning process.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Technical Associate</h3>
+                            <h4>Caelius Consulting</h4>
+                            <span class="date"
+                                >February 2023 - August 2023</span
+                            >
+                            <ul>
+                                <li>
+                                    Analyzed and monitored API performance,
+                                    promptly addressing issues to maintain
+                                    operational continuity.
+                                </li>
+                                <li>
+                                    Worked with the MuleSoft platform to support
+                                    the complete API development lifecycle.
+                                </li>
+                                <li>
+                                    Improved service efficiency through
+                                    comprehensive API development and
+                                    monitoring.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-      <div class="container">
-        <h2>Projects</h2>
-        <div class="project-grid">
-          <div class="project-card">
-            <div class="project-img"></div>
-            <div class="project-info">
-              <h3>SafeSphere (Phase 1 & 2)</h3>
-              <span class="date">February 2024 - Present</span>
-              <p>
-                A PaaS-based QHSE management solution aimed at enhancing safety
-                performance and regulatory compliance for high-risk industries
-                such as Oil and Gas, Construction, and Manufacturing.
-              </p>
-              <p>
-                <strong>Phase 1:</strong> Implemented functionality for Incident
-                reporting, Observation, and Safetynet Data Entry. Developed a
-                comprehensive super admin section for organization management.
-              </p>
-              <p>
-                <strong>Phase 2:</strong> Expanded reporting capabilities to
-                include Meeting reports, Management of Change (MoC) reports, and
-                Risk Assessment reports. Added investigation capabilities to
-                existing modules.
-              </p>
+        <!-- Projects Section -->
+        <section class="projects" id="projects">
+            <div class="container">
+                <h2>Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-img"></div>
+                        <div class="project-info">
+                            <h3>SafeSphere (Phase 1 & 2)</h3>
+                            <span class="date">February 2024 - Present</span>
+                            <p>
+                                A PaaS-based QHSE management solution aimed at
+                                enhancing safety performance and regulatory
+                                compliance for high-risk industries such as Oil
+                                and Gas, Construction, and Manufacturing.
+                            </p>
+                            <p>
+                                <strong>Phase 1:</strong> Implemented
+                                functionality for Incident reporting,
+                                Observation, and Safetynet Data Entry. Developed
+                                a comprehensive super admin section for
+                                organization management.
+                            </p>
+                            <p>
+                                <strong>Phase 2:</strong> Expanded reporting
+                                capabilities to include Meeting reports,
+                                Management of Change (MoC) reports, and Risk
+                                Assessment reports. Added investigation
+                                capabilities to existing modules.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-img"></div>
+                        <div class="project-info">
+                            <h3>IHG (InterContinental Hotels Group)</h3>
+                            <span class="date"
+                                >February 2023 - August 2023</span
+                            >
+                            <p>
+                                Developed and maintained APIs for IHG, utilizing
+                                MuleSoft technology to enhance scalability and
+                                guest experiences.
+                            </p>
+                            <p>
+                                <strong>Responsibilities:</strong> Played a
+                                critical role in API development and monitoring.
+                                Ensured seamless service delivery through
+                                proactive issue resolution and collaboration.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-img"></div>
+                        <div class="project-info">
+                            <h3>Data Doodle</h3>
+                            <span class="date">March 2023 - April 2023</span>
+                            <p>
+                                Created Data Doodle, a Python-based data
+                                automation tool for efficient data extraction
+                                and analysis.
+                            </p>
+                            <p>
+                                <strong>Key Responsibilities:</strong> Developed
+                                filtering algorithms for optimized data
+                                extraction. Enhanced data accuracy through
+                                rigorous testing and user-friendly features.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="project-card">
-            <div class="project-img"></div>
-            <div class="project-info">
-              <h3>IHG (InterContinental Hotels Group)</h3>
-              <span class="date">February 2023 - August 2023</span>
-              <p>
-                Developed and maintained APIs for IHG, utilizing MuleSoft
-                technology to enhance scalability and guest experiences.
-              </p>
-              <p>
-                <strong>Responsibilities:</strong> Played a critical role in API
-                development and monitoring. Ensured seamless service delivery
-                through proactive issue resolution and collaboration.
-              </p>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills" id="skills">
+            <div class="container">
+                <h2>Technical Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <ul class="skill-list">
+                            <li>JavaScript</li>
+                            <li>Core Python</li>
+                            <li>Core Java</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Frameworks/Libraries</h3>
+                        <ul class="skill-list">
+                            <li>Node.js</li>
+                            <li>Express.js</li>
+                            <li>React.js</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Databases</h3>
+                        <ul class="skill-list">
+                            <li>MySQL</li>
+                            <li>MongoDB</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools & Services</h3>
+                        <ul class="skill-list">
+                            <li>Git</li>
+                            <li>Postman</li>
+                            <li>Jira</li>
+                            <li>AWS</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Certifications</h3>
+                        <ul class="skill-list">
+                            <li>Python Essential Training (LinkedIn)</li>
+                            <li>SQL Certification (HackerRank)</li>
+                            <li>MuleSoft Certified Integration Associate</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <ul class="skill-list">
+                            <li>Hindi (Fluent)</li>
+                            <li>English (Fluent)</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="project-card">
-            <div class="project-img"></div>
-            <div class="project-info">
-              <h3>Data Doodle</h3>
-              <span class="date">March 2023 - April 2023</span>
-              <p>
-                Created Data Doodle, a Python-based data automation tool for
-                efficient data extraction and analysis.
-              </p>
-              <p>
-                <strong>Key Responsibilities:</strong> Developed filtering
-                algorithms for optimized data extraction. Enhanced data accuracy
-                through rigorous testing and user-friendly features.
-              </p>
+        </section>
+
+        <!-- Education Section -->
+        <section class="education" id="education">
+            <div class="container">
+                <h2>Education</h2>
+                <div class="education-container">
+                    <div class="education-item">
+                        <h3>B.Tech in Computer Science Engineering</h3>
+                        <h4>
+                            Swami Vivekanand Institute of Engineering and
+                            Technology, Punjab
+                        </h4>
+                        <span class="date">November 2020 - June 2024</span>
+                        <p>GPA: 8.21</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>Intermediate</h3>
+                        <h4>Ram Jaipal College, Bihar</h4>
+                        <span class="date">April 2018 - March 2020</span>
+                        <p>Percentage: 65%</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>Matriculation</h3>
+                        <h4>Ut High School, Bihar</h4>
+                        <span class="date">March 2017 - March 2018</span>
+                        <p>Percentage: 66%</p>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-      <div class="container">
-        <h2>Technical Skills</h2>
-        <div class="skills-container">
-          <div class="skill-category">
-            <h3>Programming Languages</h3>
-            <ul class="skill-list">
-              <li>JavaScript</li>
-              <li>Core Python</li>
-              <li>Core Java</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>Frameworks/Libraries</h3>
-            <ul class="skill-list">
-              <li>Node.js</li>
-              <li>Express.js</li>
-              <li>React.js</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>Databases</h3>
-            <ul class="skill-list">
-              <li>MySQL</li>
-              <li>MongoDB</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>Tools & Services</h3>
-            <ul class="skill-list">
-              <li>Git</li>
-              <li>Postman</li>
-              <li>Jira</li>
-              <li>AWS</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>Certifications</h3>
-            <ul class="skill-list">
-              <li>Python Essential Training (LinkedIn)</li>
-              <li>SQL Certification (HackerRank)</li>
-              <li>MuleSoft Certified Integration Associate</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>Languages</h3>
-            <ul class="skill-list">
-              <li>Hindi (Fluent)</li>
-              <li>English (Fluent)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2>Contact Me</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Get In Touch</h3>
+                        <p>
+                            Feel free to reach out to me for any opportunities
+                            or collaborations. I'm available for relocation or
+                            remote work and always open to discussing new
+                            projects.
+                        </p>
+                        <ul class="contact-details">
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Mohali, Punjab, India</span>
+                            </li>
+                            <!-- <li>
+                                <i class="fas fa-phone"></i>
+                                <span>+91 95708 23816</span>
+                            </li> -->
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <span>pandeysaurav878@gmail.com</span>
+                            </li>
+                        </ul>
+                        <div class="social-icons">
+                            <a
+                                href="https://github.com/Saurav-TB-Pandey"
+                                target="_blank"
+                                ><i class="fab fa-github"></i
+                            ></a>
+                            <a
+                                href="https://www.linkedin.com/in/pandeysaurav/"
+                                target="_blank"
+                                ><i class="fab fa-linkedin"></i
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Education Section -->
-    <section class="education" id="education">
-      <div class="container">
-        <h2>Education</h2>
-        <div class="education-container">
-          <div class="education-item">
-            <h3>B.Tech in Computer Science Engineering</h3>
-            <h4>
-              Swami Vivekanand Institute of Engineering and Technology, Punjab
-            </h4>
-            <span class="date">November 2020 - June 2024</span>
-            <p>GPA: 8.21</p>
-          </div>
-          <div class="education-item">
-            <h3>Intermediate</h3>
-            <h4>Ram Jaipal College, Bihar</h4>
-            <span class="date">April 2018 - March 2020</span>
-            <p>Percentage: 65%</p>
-          </div>
-          <div class="education-item">
-            <h3>Matriculation</h3>
-            <h4>Ut High School, Bihar</h4>
-            <span class="date">March 2017 - March 2018</span>
-            <p>Percentage: 66%</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Saurav Kumar. All Rights Reserved.</p>
+                <div class="footer-social">
+                    <a
+                        href="https://github.com/Saurav-TB-Pandey"
+                        target="_blank"
+                        ><i class="fab fa-github"></i
+                    ></a>
+                    <a
+                        href="https://www.linkedin.com/in/pandeysaurav/"
+                        target="_blank"
+                        ><i class="fab fa-linkedin"></i
+                    ></a>
+                    <a href="mailto:pandeysaurav878@gmail.com"
+                        ><i class="fas fa-envelope"></i
+                    ></a>
+                </div>
+            </div>
+        </footer>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-      <div class="container">
-        <h2>Contact Me</h2>
-        <div class="contact-container">
-          <div class="contact-info">
-            <h3>Get In Touch</h3>
-            <p>
-              Feel free to reach out to me for any opportunities or
-              collaborations. I'm available for relocation or remote work and
-              always open to discussing new projects.
-            </p>
-            <ul class="contact-details">
-              <li>
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Mohali, Punjab, India</span>
-              </li>
-              <li>
-                <i class="fas fa-phone"></i>
-                <span>+91 95708 23816</span>
-              </li>
-              <li>
-                <i class="fas fa-envelope"></i>
-                <span>pandeysaurav878@gmail.com</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+        <script>
+            // Mobile Navigation
+            const hamburger = document.querySelector(".hamburger");
+            const navLinks = document.querySelector(".nav-links");
 
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p>&copy; 2025 Saurav Kumar. All Rights Reserved.</p>
-        <div class="footer-social">
-          <a href="https://github.com/Saurav-TB-Pandey" target="_blank"
-            ><i class="fab fa-github"></i
-          ></a>
-          <a href="https://www.linkedin.com/in/pandeysaurav/" target="_blank"
-            ><i class="fab fa-linkedin"></i
-          ></a>
-          <a href="mailto:pandeysaurav878@gmail.com"
-            ><i class="fas fa-envelope"></i
-          ></a>
-        </div>
-      </div>
-    </footer>
-
-    <script>
-      // Mobile Navigation
-      const hamburger = document.querySelector(".hamburger");
-      const navLinks = document.querySelector(".nav-links");
-
-      hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-      });
-
-      // Close mobile menu when clicking on links
-      document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("active");
-        });
-      });
-
-      // Smooth scrolling for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-
-          const targetId = this.getAttribute("href");
-          const targetElement = document.querySelector(targetId);
-
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: "smooth",
-          });
-        });
-      });
-
-      // Intersection Observer for scroll animations
-      document.addEventListener("DOMContentLoaded", function () {
-        // Detect elements that should animate on scroll
-        const animatedElements = document.querySelectorAll(
-          "section h2, .skill-category, .project-card, .timeline-item, .education-item, .contact-info"
-        );
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("animate");
-                observer.unobserve(entry.target);
-              }
+            hamburger.addEventListener("click", () => {
+                navLinks.classList.toggle("active");
             });
-          },
-          {
-            threshold: 0.1,
-          }
-        );
 
-        animatedElements.forEach((element) => {
-          observer.observe(element);
-        });
+            // Close mobile menu when clicking on links
+            document.querySelectorAll(".nav-links a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    navLinks.classList.remove("active");
+                });
+            });
 
-        // Typing effect for hero section
-        const heroText = document.querySelector(".hero p");
-        const text = heroText.textContent;
-        heroText.textContent = "";
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault();
 
-        let i = 0;
-        function typeWriter() {
-          if (i < text.length) {
-            heroText.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50);
-          }
-        }
+                    const targetId = this.getAttribute("href");
+                    const targetElement = document.querySelector(targetId);
 
-        // Start typing effect after initial animations
-        setTimeout(typeWriter, 1500);
-      });
-    </script>
-  </body>
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: "smooth",
+                    });
+                });
+            });
+
+            // Intersection Observer for scroll animations
+            document.addEventListener("DOMContentLoaded", function () {
+                // Detect elements that should animate on scroll
+                const animatedElements = document.querySelectorAll(
+                    "section h2, .skill-category, .project-card, .timeline-item, .education-item, .contact-info"
+                );
+
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add("animate");
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    },
+                    {
+                        threshold: 0.1,
+                    }
+                );
+
+                animatedElements.forEach((element) => {
+                    observer.observe(element);
+                });
+
+                // Typing effect for hero section
+                const heroText = document.querySelector(".hero p");
+                const text = heroText.textContent;
+                heroText.textContent = "";
+
+                let i = 0;
+                function typeWriter() {
+                    if (i < text.length) {
+                        heroText.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 50);
+                    }
+                }
+
+                // Start typing effect after initial animations
+                setTimeout(typeWriter, 1500);
+            });
+        </script>
+    </body>
 </html>
