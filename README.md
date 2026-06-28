@@ -92,18 +92,10 @@ The compiled files will be output to the `/dist` directory.
 
 ---
 
-## 🌐 Deployment
+## 🌐 Live Deployment
 
-You can deploy the `/dist` folder to any static hosting provider. We recommend:
+The website is successfully deployed on **Vercel** and is accessible live at:
+🔗 **[https://saurav-tb-pandey.vercel.app/](https://saurav-tb-pandey.vercel.app/)**
 
-### **Vercel**
-1. Connect your repository to Vercel.
-2. In Vercel Project Settings, add the environment variable:
-   * **Key:** `VITE_WEB3FORMS_ACCESS_KEY`
-   * **Value:** `[Your Web3Forms Key]`
-3. Deploy.
-
-### **Netlify**
-1. Connect your repository to Netlify.
-2. In Site Settings > Environment Variables, add `VITE_WEB3FORMS_ACCESS_KEY`.
-3. Deploy.
+### 🔄 Automatic CI/CD Pipeline
+Since the project is connected to Vercel, pushing updates to the `master` branch will trigger an automatic cloud rebuild and live deploy. No manual deployment commands are needed!
