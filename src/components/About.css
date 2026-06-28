@@ -1,0 +1,99 @@
+.about-container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-greeting {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.about-para {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.about-domains-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 1rem;
+}
+
+.about-domains-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.about-domain-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.about-domain-item:hover {
+  background: rgba(0, 240, 255, 0.05);
+  border-color: rgba(0, 240, 255, 0.2);
+  transform: translateX(3px);
+}
+
+.about-domain-icon {
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+}
+
+/* Code block terminal styles */
+.code-editor-wrapper {
+  perspective: 1000px;
+}
+
+.code-editor-about {
+  transform: rotateY(-3deg) rotateX(2deg);
+  transition: var(--transition);
+}
+
+.code-editor-about:hover {
+  transform: rotateY(0deg) rotateX(0deg);
+}
+
+/* Syntax Highlighting */
+.syntax-keyword { color: #FF79C6; }
+.syntax-string { color: #F1FA8C; }
+.syntax-number { color: #BD93F9; }
+.syntax-property { color: #50FA7B; }
+.syntax-comment { color: #6272A4; font-style: italic; }
+.syntax-punct { color: #F8F8F2; }
+
+@media (max-width: 992px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .code-editor-about {
+    transform: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-domains-grid {
+    grid-template-columns: 1fr;
+  }
+}
