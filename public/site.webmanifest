@@ -1,0 +1,28 @@
+{
+  "name": "Saurav Kumar | Full Stack Developer",
+  "short_name": "Saurav Kumar",
+  "description": "Senior Full Stack Developer specializing in MERN stack, AWS, TypeScript and real-time systems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a1a",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "lang": "en-IN",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "developer", "technology"],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "label": "Saurav Kumar Portfolio Homepage"
+    }
+  ]
+}
