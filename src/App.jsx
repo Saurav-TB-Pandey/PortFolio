@@ -33,7 +33,10 @@ function App() {
   useEffect(() => {
     const handleKeyDown = (e) => {
       // Ignore if typing in an input (except the terminal input itself)
-      if (e.key === '`' || e.key === '~') {
+      // Check if the pressed key is a special character
+      const isSpecialChar = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]$/.test(e.key);
+      
+      if (isSpecialChar) {
         if (e.target.tagName !== 'INPUT' || e.target.classList.contains('terminal-input')) {
           e.preventDefault();
           setIsTerminalOpen(prev => !prev);
@@ -96,9 +99,7 @@ function App() {
       <footer className="footer">
         <div className="container footer-container">
           <div className="footer-logo">
-            <span style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00ff88'} onMouseLeave={e => e.target.style.color = 'inherit'} onClick={() => setIsTerminalOpen(true)}>&lt;</span>
-            SauravKumar 
-            <span style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00ff88'} onMouseLeave={e => e.target.style.color = 'inherit'} onClick={() => setIsTerminalOpen(true)}> /&gt;</span>
+            &lt;SauravKumar /&gt;
           </div>
           <p className="footer-quote">
             "Code is like humor. When you have to explain it, it's bad."
