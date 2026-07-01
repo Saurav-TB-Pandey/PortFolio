@@ -101,7 +101,11 @@ const Hero = () => {
           <div className="hero-avatar-container">
             <div className="hero-avatar-placeholder">
               <Code2 size={70} strokeWidth={1.5} />
-              <div style={{ marginTop: '1rem', fontWeight: 600, fontSize: '1.2rem', fontFamily: 'var(--font-sans)' }}>&lt; MERN Specialist /&gt;</div>
+              <div style={{ marginTop: '1rem', fontWeight: 600, fontSize: '1.2rem', fontFamily: 'var(--font-sans)' }}>
+                <span style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00ff88'} onMouseLeave={e => e.target.style.color = 'inherit'} onClick={() => window.dispatchEvent(new Event('open-terminal'))}>&lt;</span>
+                {' '}MERN Specialist{' '}
+                <span style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00ff88'} onMouseLeave={e => e.target.style.color = 'inherit'} onClick={() => window.dispatchEvent(new Event('open-terminal'))}>/&gt;</span>
+              </div>
             </div>
           </div>
           <div className="hero-tech-orbit">

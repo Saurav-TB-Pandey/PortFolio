@@ -41,8 +41,15 @@ function App() {
       }
     };
     
+    const handleCustomOpen = () => setIsTerminalOpen(true);
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('open-terminal', handleCustomOpen);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('open-terminal', handleCustomOpen);
+    };
   }, []);
 
   return (
@@ -89,22 +96,15 @@ function App() {
       <footer className="footer">
         <div className="container footer-container">
           <div className="footer-logo">
-            &lt;SauravKumar /&gt;
+            <span style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00ff88'} onMouseLeave={e => e.target.style.color = 'inherit'} onClick={() => setIsTerminalOpen(true)}>&lt;</span>
+            SauravKumar 
+            <span style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00ff88'} onMouseLeave={e => e.target.style.color = 'inherit'} onClick={() => setIsTerminalOpen(true)}> /&gt;</span>
           </div>
           <p className="footer-quote">
             "Code is like humor. When you have to explain it, it's bad."
           </p>
           <p className="footer-text">
             &copy; {new Date().getFullYear()} Saurav Kumar. All rights reserved. Designed with visual excellence.
-            <span 
-              onClick={() => setIsTerminalOpen(true)}
-              style={{ cursor: 'pointer', marginLeft: '10px', opacity: 0.5, transition: 'opacity 0.2s' }}
-              onMouseEnter={(e) => e.currentTarget.style.opacity = 1}
-              onMouseLeave={(e) => e.currentTarget.style.opacity = 0.5}
-              title="SysAdmin Access"
-            >
-              <TerminalSquare size={14} style={{ verticalAlign: 'middle' }} />
-            </span>
           </p>
         </div>
       </footer>
