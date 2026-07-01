@@ -9,6 +9,9 @@ const SecretTerminal = ({ isOpen, onClose, onOpenStats, onOpenNote }) => {
     { type: 'system', text: 'Type "help" to see available commands.' }
   ]);
   const [isMaximized, setIsMaximized] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartPos = useRef({ x: 0, y: 0 });
   const inputRef = useRef(null);
   const terminalEndRef = useRef(null);
 
@@ -16,11 +19,47 @@ const SecretTerminal = ({ isOpen, onClose, onOpenStats, onOpenNote }) => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
     }
+    // Reset position when closed
+    if (!isOpen) {
+      setPosition({ x: 0, y: 0 });
+    }
   }, [isOpen]);
 
   useEffect(() => {
     terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [history, isOpen]);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!isDragging || isMaximized) return;
+      setPosition({
+        x: e.clientX - dragStartPos.current.x,
+        y: e.clientY - dragStartPos.current.y
+      });
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    if (isDragging) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+    }
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDragging, isMaximized]);
+
+  const handleMouseDown = (e) => {
+    if (isMaximized) return;
+    setIsDragging(true);
+    dragStartPos.current = {
+      x: e.clientX - position.x,
+      y: e.clientY - position.y
+    };
+  };
 
   const handleCommand = (e) => {
     if (e.key === 'Enter') {
@@ -81,8 +120,11 @@ const SecretTerminal = ({ isOpen, onClose, onOpenStats, onOpenNote }) => {
   if (!isOpen) return null;
 
   return (
-    <div className={`secret-terminal ${isMaximized ? 'maximized' : ''}`}>
-      <div className="terminal-header">
+    <div 
+      className={`secret-terminal ${isMaximized ? 'maximized' : ''} ${isDragging ? 'dragging' : ''}`}
+      style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
+    >
+      <div className="terminal-header" onMouseDown={handleMouseDown} style={{ cursor: isMaximized ? 'default' : 'grab' }}>
         <div className="terminal-brand">
           <TerminalIcon size={16} />
           <span>Saurav_OS Terminal</span>

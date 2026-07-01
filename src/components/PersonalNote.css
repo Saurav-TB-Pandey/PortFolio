@@ -100,30 +100,51 @@
   text-shadow: 0 0 10px #00ff88;
 }
 
-.note-content pre {
-  margin: 0;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  overflow-x: auto;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+.note-scroll-area {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 1rem;
 }
 
-.note-content code {
-  color: #a5b4fc;
-  font-family: 'Fira Code', 'Consolas', monospace;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  white-space: pre-wrap;
+.note-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+.note-scroll-area::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+.note-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+[data-theme="secret"] .note-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 136, 0.3);
 }
 
-[data-theme="secret"] .note-content pre {
-  background: rgba(0, 20, 10, 0.3);
-  border-color: rgba(0, 255, 136, 0.2);
+.note-content {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
-[data-theme="secret"] .note-content code {
+[data-theme="secret"] .note-content {
   color: rgba(0, 255, 136, 0.85);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+}
+
+.note-content p {
+  margin-bottom: 1.5rem;
+}
+
+.greeting {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+}
+
+[data-theme="secret"] .greeting {
+  color: #00ff88;
 }
 
 .note-signature {
