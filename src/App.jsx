@@ -46,12 +46,12 @@ function App() {
     `;
 
         console.info(
-            `%c${asciiArt}\n%cHello there! 👋 Welcome to the console.\n\n%cIt takes a curious mind to open the developer tools. \nI built this portfolio to showcase not just my frontend skills, but my obsession with performance, clean code, and hidden details.\n\nFeel free to poke around the source. If you're looking for an engineer who builds scalable, user-focused applications, we should definitely talk.\n\n%c📬 Email: pandeysaurav878@gmail.com\n🔗 GitHub: github.com/Saurav-TB-Pandey\n\n%c[Secret Hint]: Close this console, click anywhere on the website background, and type any special character (like @, #, or $) to unlock the hidden terminal.`,
-            "color: #00F0FF; font-weight: bold; font-family: monospace;",
-            "color: #8E2DE2; font-size: 20px; font-weight: bold;",
-            "color: #F1F5F9; font-size: 14px; line-height: 1.6;",
-            "color: #10B981; font-size: 14px; font-weight: bold; line-height: 1.6; padding: 8px 0;",
-            "color: #64748B; font-size: 13px; font-style: italic;",
+            `%c${asciiArt}\n%c> ACCESS GRANTED_\n\n%cWelcome to the source, agent. 🕵️\nMost visitors never make it past the pixels. You did — that\nusually means one of two things: you're a developer, or you're\nabout to become my next favorite interview.\n\nThis site runs on the same principles I bring to real products:\nfast, clean, and built to survive contact with real users.\n\n%c📬 pandeysaurav878@gmail.com\n🔗 github.com/Saurav-TB-Pandey\n\n%c> type @ # or $ anywhere on the page to continue_`,
+            "color: #00ff88; font-weight: bold; font-family: monospace;",
+            "color: #00ff88; font-size: 22px; font-weight: bold; font-family: monospace; text-shadow: 0 0 8px #00ff88;",
+            "color: #d1fae5; font-size: 14px; line-height: 1.6;",
+            "color: #00ff88; font-size: 14px; font-weight: bold; line-height: 1.6; padding: 8px 0;",
+            "color: #6ee7b7; font-size: 13px; font-style: italic;",
         );
     }, []);
 
