@@ -94,6 +94,13 @@ const SecretTerminal = ({ isOpen, onClose, onOpenStats, onOpenNote }) => {
         case 'hire':
           newHistory.push({ type: 'output', text: 'Excellent choice. Routing to secure recruitment channel...' });
           
+          // Read current theme colors dynamically
+          const rootStyles = getComputedStyle(document.documentElement);
+          const color1 = rootStyles.getPropertyValue("--primary").trim() || "#00F0FF";
+          const color2 = rootStyles.getPropertyValue("--secondary").trim() || "#8E2DE2";
+          const color3 = rootStyles.getPropertyValue("--accent").trim() || "#10B981";
+          const themeColors = [color1, color2, color3];
+          
           const duration = 3000;
           const end = Date.now() + duration;
 
@@ -103,14 +110,14 @@ const SecretTerminal = ({ isOpen, onClose, onOpenStats, onOpenNote }) => {
                   angle: 60,
                   spread: 55,
                   origin: { x: 0 },
-                  colors: ["#00F0FF", "#8E2DE2", "#10B981"]
+                  colors: themeColors
               });
               confetti({
                   particleCount: 5,
                   angle: 120,
                   spread: 55,
                   origin: { x: 1 },
-                  colors: ["#00F0FF", "#8E2DE2", "#10B981"]
+                  colors: themeColors
               });
 
               if (Date.now() < end) {
