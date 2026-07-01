@@ -41,12 +41,12 @@ function App() {
     `;
     
     console.log(
-      `%c${asciiArt}\n%cAh, a fellow developer! 🕵️‍♂️\n\n%cLooking under the hood? I like your style.\nIf you're reading this, we should probably connect.\n\n%cDrop me a line: pandeysaurav878@gmail.com\n\n%c(P.S. Try typing any special character like ! @ # or $ on your keyboard...)`,
+      `%c${asciiArt}\n%cHello there! 👋 Welcome to the console.\n\n%cIt takes a curious mind to open the developer tools. \nI built this portfolio to showcase not just my frontend skills, but my obsession with performance, clean code, and hidden details.\n\nFeel free to poke around the source. If you're looking for an engineer who builds scalable, user-focused applications, we should definitely talk.\n\n%c📬 Email: pandeysaurav878@gmail.com\n🔗 GitHub: github.com/Saurav-TB-Pandey\n\n%c[Secret Hint]: Close this console, click anywhere on the website background, and type any special character (like @, #, or $) to unlock the hidden terminal.`,
       "color: #00F0FF; font-weight: bold; font-family: monospace;",
       "color: #8E2DE2; font-size: 20px; font-weight: bold;",
-      "color: #F1F5F9; font-size: 14px; line-height: 1.5;",
-      "color: #10B981; font-size: 14px; font-weight: bold; padding: 4px 0;",
-      "color: #64748B; font-size: 12px; font-style: italic;"
+      "color: #F1F5F9; font-size: 14px; line-height: 1.6;",
+      "color: #10B981; font-size: 14px; font-weight: bold; line-height: 1.6; padding: 8px 0;",
+      "color: #64748B; font-size: 13px; font-style: italic;"
     );
   }, []);
 
