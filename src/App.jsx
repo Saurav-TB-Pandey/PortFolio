@@ -1,16 +1,22 @@
-import React, { Suspense, lazy } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import SkeletonLoader from './components/SkeletonLoader';
+import LazySection from './components/LazySection';
+import {
+  AboutSkeleton,
+  SkillsSkeleton,
+  ExperienceSkeleton,
+  ProjectsSkeleton,
+  ContactSkeleton
+} from './components/SkeletonLoader';
 import './App.css';
 
-// Lazy load below-the-fold components
-const About = lazy(() => import('./components/About'));
-const Skills = lazy(() => import('./components/Skills'));
-const Experience = lazy(() => import('./components/Experience'));
-const Projects = lazy(() => import('./components/Projects'));
-const Contact = lazy(() => import('./components/Contact'));
+import About from './components/About';
+import Skills from './components/Skills';
+import Experience from './components/Experience';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
 
 function App() {
   return (
@@ -18,13 +24,21 @@ function App() {
       <Navbar />
       <Hero />
       
-      <Suspense fallback={<SkeletonLoader />}>
+      <LazySection fallback={<AboutSkeleton />}>
         <About />
+      </LazySection>
+      <LazySection fallback={<SkillsSkeleton />}>
         <Skills />
+      </LazySection>
+      <LazySection fallback={<ExperienceSkeleton />}>
         <Experience />
+      </LazySection>
+      <LazySection fallback={<ProjectsSkeleton />}>
         <Projects />
+      </LazySection>
+      <LazySection fallback={<ContactSkeleton />}>
         <Contact />
-      </Suspense>
+      </LazySection>
       
       <footer className="footer">
         <div className="container footer-container">
