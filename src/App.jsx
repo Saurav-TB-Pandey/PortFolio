@@ -6,12 +6,14 @@ import { Skeleton } from 'boneyard-js/react';
 import './bones/registry'; // Boneyard skeleton registry
 import './App.css';
 
-// Lazy load below-the-fold components
-const About = lazy(() => import('./components/About'));
-const Skills = lazy(() => import('./components/Skills'));
-const Experience = lazy(() => import('./components/Experience'));
-const Projects = lazy(() => import('./components/Projects'));
-const Contact = lazy(() => import('./components/Contact'));
+// Artificial delay to demonstrate the Boneyard skeleton loader
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+const About = lazy(() => delay(2500).then(() => import('./components/About')));
+const Skills = lazy(() => delay(2500).then(() => import('./components/Skills')));
+const Experience = lazy(() => delay(2500).then(() => import('./components/Experience')));
+const Projects = lazy(() => delay(2500).then(() => import('./components/Projects')));
+const Contact = lazy(() => delay(2500).then(() => import('./components/Contact')));
 
 function App() {
   return (
@@ -19,7 +21,12 @@ function App() {
       <Navbar />
       <Hero />
       
-      <Suspense fallback={<Skeleton name="portfolio-content" loading={true} />}>
+      <Suspense fallback={
+        <Skeleton name="portfolio-content" loading={true}>
+          {/* Boneyard needs a child to measure against for relative positioning */}
+          <div style={{ minHeight: '3000px', width: '100%' }}></div>
+        </Skeleton>
+      }>
         <About />
         <Skills />
         <Experience />
