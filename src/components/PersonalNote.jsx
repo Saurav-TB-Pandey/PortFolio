@@ -1,11 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import { X, Terminal } from "lucide-react";
+import { X, Mail, Code2, Server, Cloud, CreditCard, Plug, ArrowRight } from "lucide-react";
 import "./PersonalNote.css";
 
-/**
- * A "found in devtools" easter egg styled as real source code —
- * on-brand for a full-stack portfolio instead of a generic note card.
- */
 const PersonalNote = ({ isOpen, onClose }) => {
     const closeBtnRef = useRef(null);
 
@@ -28,178 +24,86 @@ const PersonalNote = ({ isOpen, onClose }) => {
             onClick={onClose}
             role="dialog"
             aria-modal="true"
-            aria-labelledby="note-filename-label"
         >
-            <div className="note-modal" onClick={(e) => e.stopPropagation()}>
-                <div className="note-titlebar">
-                    <div className="note-dots" aria-hidden="true">
-                        <span className="dot-red" />
-                        <span className="dot-amber" />
-                        <span className="dot-green" />
-                    </div>
-                    <div className="note-filename" id="note-filename-label">
-                        <Terminal size={14} />
-                        <span>recruiter-note.js</span>
-                    </div>
-                    <span className="note-badge">READ ONLY</span>
-                    <button
-                        ref={closeBtnRef}
-                        className="note-close-btn"
-                        onClick={onClose}
-                        aria-label="Close note"
-                    >
-                        <X size={18} />
-                    </button>
+            <div className="note-card" onClick={(e) => e.stopPropagation()}>
+                <button
+                    ref={closeBtnRef}
+                    className="note-close"
+                    onClick={onClose}
+                    aria-label="Close note"
+                >
+                    <X size={24} />
+                </button>
+
+                <div className="note-header">
+                    <div className="note-badge-secret">CONFIDENTIAL 🕵️</div>
+                    <h2>Hey \u2014 you found the secret note.</h2>
+                    <p className="note-subtitle">
+                        Most people never look this deep into a portfolio. You did \u2014 that already tells me you care about the details.
+                    </p>
                 </div>
 
-                <div className="note-scroll-area">
-                    <CodeLine n={1} tokens={[["tok-comment", "/**"]]} />
-                    <CodeLine
-                        n={2}
-                        tokens={[
-                            [
-                                "tok-comment",
-                                " * Hey — you found the secret note. ",
-                            ],
-                            ["tok-emoji", "🕵️"],
-                        ]}
-                    />
-                    <CodeLine
-                        n={3}
-                        tokens={[
-                            [
-                                "tok-comment",
-                                " * Most people never open devtools on a portfolio.",
-                            ],
-                        ]}
-                    />
-                    <CodeLine
-                        n={4}
-                        tokens={[
-                            [
-                                "tok-comment",
-                                " * You did — that already tells me something.",
-                            ],
-                        ]}
-                    />
-                    <CodeLine n={5} tokens={[["tok-comment", " */"]]} />
-                    <div className="code-line spacer" aria-hidden="true" />
+                <div className="note-body">
+                    <p className="note-intro">
+                        I built this portfolio not just as a digital resume, but as a playground. Here is a quick rundown of what I bring to the table:
+                    </p>
 
-                    <CodeLine
-                        n={6}
-                        tokens={[
-                            ["tok-key", "const"],
-                            ["tok-plain", " about = {"],
-                        ]}
-                    />
-                    <CodeLine
-                        n={7}
-                        indent
-                        tokens={[
-                            ["tok-plain", "frontend: "],
-                            [
-                                "tok-string",
-                                '"React, obsessive about motion & detail"',
-                            ],
-                            ["tok-punct", ","],
-                        ]}
-                    />
-                    <CodeLine
-                        n={8}
-                        indent
-                        tokens={[
-                            ["tok-plain", "backend: "],
-                            [
-                                "tok-string",
-                                '"Node/Express APIs built to survive 3am traffic"',
-                            ],
-                            ["tok-punct", ","],
-                        ]}
-                    />
-                    <CodeLine
-                        n={9}
-                        indent
-                        tokens={[
-                            ["tok-plain", "database: "],
-                            [
-                                "tok-string",
-                                '"PostgreSQL & MongoDB schemas that don\u2019t fall over"',
-                            ],
-                            ["tok-punct", ","],
-                        ]}
-                    />
-                    <CodeLine
-                        n={10}
-                        indent
-                        tokens={[
-                            ["tok-plain", "cloud: "],
-                            [
-                                "tok-string",
-                                '"AWS \u2014 EC2, S3, Lambda, RDS, and whatever else ships it"',
-                            ],
-                            ["tok-punct", ","],
-                        ]}
-                    />
-                    <CodeLine n={11} tokens={[["tok-plain", "};"]]} />
-                    <div className="code-line spacer" aria-hidden="true" />
+                    <div className="note-skills-grid">
+                        <div className="note-skill-item">
+                            <div className="skill-icon"><Code2 size={20} /></div>
+                            <div className="skill-content">
+                                <strong>Frontend</strong>
+                                <span>React, obsessive about motion & detail</span>
+                            </div>
+                        </div>
+                        <div className="note-skill-item">
+                            <div className="skill-icon"><Server size={20} /></div>
+                            <div className="skill-content">
+                                <strong>Backend</strong>
+                                <span>Node/Express APIs built to survive 3am traffic</span>
+                            </div>
+                        </div>
+                        <div className="note-skill-item">
+                            <div className="skill-icon"><Cloud size={20} /></div>
+                            <div className="skill-content">
+                                <strong>Cloud & DBs</strong>
+                                <span>AWS (EC2, S3, RDS) & SQL/NoSQL databases</span>
+                            </div>
+                        </div>
+                        <div className="note-skill-item">
+                            <div className="skill-icon"><CreditCard size={20} /></div>
+                            <div className="skill-content">
+                                <strong>Payments</strong>
+                                <span>Stripe, Razorpay & Thawani integrations</span>
+                            </div>
+                        </div>
+                        <div className="note-skill-item full-width">
+                            <div className="skill-icon"><Plug size={20} /></div>
+                            <div className="skill-content">
+                                <strong>Integrations</strong>
+                                <span>Xero, PRODA, Telnyx, Mistral AI, Twilio, and counting</span>
+                            </div>
+                        </div>
+                    </div>
 
-                    <CodeLine
-                        n={12}
-                        tokens={[
-                            ["tok-key", "const"],
-                            ["tok-plain", " lookingFor = "],
-                            [
-                                "tok-string",
-                                '"teams building something ambitious, scalable, and user-focused"',
-                            ],
-                            ["tok-punct", ";"],
-                        ]}
-                    />
-                    <div className="code-line spacer" aria-hidden="true" />
-
-                    <CodeLine
-                        n={13}
-                        tokens={[
-                            [
-                                "tok-comment",
-                                "// there are a few more easter eggs hiding around here too ",
-                            ],
-                            ["tok-emoji", "👀"],
-                        ]}
-                    />
+                    <div className="note-looking-for">
+                        <h3>What I'm looking for:</h3>
+                        <p>Teams building something ambitious, scalable, and user-focused.</p>
+                    </div>
                 </div>
 
-                <div className="note-prompt">
-                    <div className="prompt-line">
-                        <span className="prompt-user">saurav@portfolio</span>
-                        <span className="tok-punct">:~$</span>
-                        <span className="prompt-cmd">echo "let's talk"</span>
+                <div className="note-footer">
+                    <div className="note-signature-block">
+                        <p>Looking forward to connecting,</p>
+                        <h4>Saurav Kumar</h4>
                     </div>
-                    <div className="prompt-output">
-                        <span className="tok-plain">
-                            Looking forward to connecting —
-                        </span>
-                        <span className="signature-name">Saurav Kumar</span>
-                        <span className="cursor-blink" aria-hidden="true" />
-                    </div>
+                    <a href="mailto:pandeysaurav878@gmail.com" className="note-cta">
+                        Let's Talk <ArrowRight size={18} />
+                    </a>
                 </div>
             </div>
         </div>
     );
 };
-
-/** Renders one line of the code block with a line number and inline tokens. */
-const CodeLine = ({ n, tokens, indent = false }) => (
-    <div className={`code-line${indent ? " indent-1" : ""}`}>
-        <span className="line-num">{n}</span>
-        <span className="line-content">
-            {tokens.map(([cls, text], i) => (
-                <span key={i} className={cls}>
-                    {text}
-                </span>
-            ))}
-        </span>
-    </div>
-);
 
 export default PersonalNote;

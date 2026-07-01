@@ -1,334 +1,279 @@
 /* ============================================================
-   Personal Note — "found in devtools" terminal easter egg
-   Token system:
-   --term-bg      rgba(10, 14, 12, 0.85) /* glassmorphism base */
-   --term-panel   rgba(15, 22, 19, 0.9)
-   --term-accent  #00ff88
-   --term-amber   #fde047 /* Brighter, more readable yellow for strings */
-   --term-muted   #94a3b8 /* Lighter slate for better contrast on comments */
-   --term-text    #f1f5f9 /* Brighter white for plain text */
-   --term-keyword #c084fc /* Purple for keywords to make it pop like a real IDE */
+   Personal Note — Premium Human Readable Modal
    ============================================================ */
 
 .note-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     z-index: 10001;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1.25rem;
-    animation: note-fade-in 0.35s ease;
+    animation: note-fade-in 0.4s ease-out;
 }
 
-.note-modal {
+.note-card {
     width: 100%;
-    max-width: 700px; /* slightly wider for better readability */
-    max-height: 85vh;
-    display: flex;
-    flex-direction: column;
-    background: var(--term-bg, rgba(10, 14, 12, 0.85));
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 255, 136, 0.3);
-    border-radius: 12px;
+    max-width: 650px;
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.98));
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 16px;
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(56, 189, 248, 0.05);
+    position: relative;
     overflow: hidden;
-    box-shadow:
-        0 40px 80px -20px rgba(0, 0, 0, 0.8),
-        0 0 50px rgba(0, 255, 136, 0.1);
-    animation: note-scale-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    font-family: "Fira Code", "JetBrains Mono", ui-monospace, monospace;
+    color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    animation: note-slide-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* ---------- title bar (window chrome) ---------- */
-
-.note-titlebar {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.85rem 1.1rem;
-    background: var(--term-panel, rgba(15, 22, 19, 0.9));
-    border-bottom: 1px solid rgba(0, 255, 136, 0.18);
-    flex-shrink: 0;
+.note-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.5), transparent);
 }
 
-.note-dots {
-    display: flex;
-    gap: 0.4rem;
-    flex-shrink: 0;
-}
-
-.note-dots span {
-    width: 12px;
-    height: 12px;
+.note-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    display: block;
-    box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
-}
-
-.note-dots .dot-red {
-    background: #ff5f57;
-}
-.note-dots .dot-amber {
-    background: #febc2e;
-}
-.note-dots .dot-green {
-    background: #28c840;
-}
-
-.note-filename {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    color: var(--term-text, #f1f5f9);
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    min-width: 0;
-}
-
-.note-filename svg {
-    color: var(--term-accent, #00ff88);
-    flex-shrink: 0;
-}
-
-.note-filename span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.note-badge {
-    margin-left: auto;
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    color: var(--term-bg);
-    background: var(--term-accent, #00ff88);
-    font-weight: 700;
-    border-radius: 4px;
-    padding: 0.2rem 0.5rem;
-    flex-shrink: 0;
-    white-space: nowrap;
-}
-
-.note-close-btn {
-    background: transparent;
-    border: none;
-    color: var(--term-muted, #94a3b8);
+    justify-content: center;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding: 0.2rem;
-    margin-left: 0.5rem;
-    flex-shrink: 0;
-    transition:
-        color 0.2s ease,
-        transform 0.2s ease;
+    transition: all 0.2s ease;
+    z-index: 10;
 }
 
-.note-close-btn:hover,
-.note-close-btn:focus-visible {
-    color: #ff5f57;
+.note-close:hover {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
     transform: rotate(90deg);
 }
 
-.note-close-btn:focus-visible {
-    outline: 2px solid #ff5f57;
-    outline-offset: 3px;
-    border-radius: 4px;
+.note-header {
+    padding: 2.5rem 2.5rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* ---------- code body ---------- */
-
-.note-scroll-area {
-    overflow-y: auto;
-    padding: 1.5rem 1.5rem 0.5rem;
+.note-badge-secret {
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    margin-bottom: 1.25rem;
 }
 
-.note-scroll-area::-webkit-scrollbar {
-    width: 8px;
-}
-.note-scroll-area::-webkit-scrollbar-track {
-    background: transparent;
-}
-.note-scroll-area::-webkit-scrollbar-thumb {
-    background: rgba(0, 255, 136, 0.25);
-    border-radius: 10px;
-}
-.note-scroll-area::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 255, 136, 0.4);
+.note-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+    color: #f8fafc;
 }
 
-.code-line {
+.note-subtitle {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    max-width: 90%;
+}
+
+.note-body {
+    padding: 2rem 2.5rem;
+}
+
+.note-intro {
+    font-size: 1.05rem;
+    color: #cbd5e1;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.note-skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+}
+
+.note-skill-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.25rem;
     display: flex;
     gap: 1rem;
-    font-size: 1rem; /* Larger font for readability */
-    line-height: 1.9; /* More breathable line-height */
-    padding: 0.15rem 0.5rem;
-    border-radius: 6px;
-    transition: background-color 0.2s ease;
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.code-line:hover {
-    background-color: rgba(255, 255, 255, 0.04);
+.note-skill-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+    border-color: rgba(56, 189, 248, 0.3);
 }
 
-.line-num {
+.note-skill-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.skill-icon {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    width: 1.8rem;
-    text-align: right;
-    color: rgba(148, 163, 184, 0.4);
-    user-select: none;
+}
+
+[data-theme="secret"] .skill-icon {
+    color: #00ff88;
+    background: rgba(0, 255, 136, 0.1);
+}
+
+[data-theme="secret"] .note-skill-item:hover {
+    border-color: rgba(0, 255, 136, 0.3);
+}
+
+.skill-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.skill-content strong {
+    font-size: 0.95rem;
+    color: #f1f5f9;
+}
+
+.skill-content span {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.5;
+}
+
+.note-looking-for {
+    background: rgba(139, 92, 246, 0.1);
+    border-left: 4px solid #8b5cf6;
+    padding: 1.25rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.note-looking-for h3 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #c4b5fd;
+    margin-bottom: 0.5rem;
+}
+
+.note-looking-for p {
+    font-size: 1.05rem;
+    color: #ede9fe;
+}
+
+.note-footer {
+    padding: 1.5rem 2.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-signature-block p {
     font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 0.25rem;
 }
 
-.line-content {
-    flex: 1;
-    min-width: 0;
-    white-space: pre-wrap;
-    word-break: break-word;
+.note-signature-block h4 {
+    font-size: 1.25rem;
+    color: #f8fafc;
+    font-family: 'Outfit', sans-serif;
 }
 
-.indent-1 .line-content {
-    padding-left: 1.5em;
-}
-
-.tok-comment {
-    color: var(--term-muted, #94a3b8);
-    font-style: italic;
-}
-.tok-key {
-    color: var(--term-keyword, #c084fc);
-    font-weight: 600;
-}
-.tok-string {
-    color: var(--term-amber, #fde047);
-}
-.tok-punct {
-    color: var(--term-muted, #94a3b8);
-}
-.tok-plain {
-    color: var(--term-text, #f1f5f9);
-}
-.tok-emoji {
-    font-style: normal;
-}
-
-.code-line.spacer {
-    height: 0.8rem;
-}
-
-/* ---------- prompt / signature ---------- */
-
-.note-prompt {
-    flex-shrink: 0;
-    padding: 1rem 1.5rem 1.35rem;
-    border-top: 1px dashed rgba(0, 255, 136, 0.2);
-    margin-top: 0.5rem;
-}
-
-.prompt-line {
+.note-cta {
     display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
-    font-size: 0.85rem;
-    flex-wrap: wrap;
-}
-
-.prompt-user {
-    color: var(--term-accent, #00ff88);
-    flex-shrink: 0;
-}
-
-.prompt-cmd {
-    color: var(--term-text, #e6f4ee);
-}
-
-.prompt-output {
-    margin-top: 0.65rem;
-    display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 0.5rem;
-    flex-wrap: wrap;
-    font-size: 0.85rem;
-}
-
-.signature-name {
-    color: var(--term-accent, #00ff88);
+    background: #38bdf8;
+    color: #0f172a;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
     font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
 }
 
-.cursor-blink {
-    display: inline-block;
-    width: 0.55em;
-    height: 1em;
-    background: var(--term-accent, #00ff88);
-    margin-left: 0.15rem;
-    vertical-align: text-bottom;
-    animation: cursor-blink 1s step-end infinite;
+.note-cta:hover {
+    background: #7dd3fc;
+    transform: translateX(4px);
 }
 
-/* ---------- motion ---------- */
+[data-theme="secret"] .note-cta {
+    background: #00ff88;
+}
+
+[data-theme="secret"] .note-cta:hover {
+    background: #6ee7b7;
+}
 
 @keyframes note-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes note-slide-up {
     from {
         opacity: 0;
+        transform: translateY(20px) scale(0.98);
     }
     to {
         opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
-@keyframes note-scale-up {
-    from {
-        opacity: 0;
-        transform: scale(0.92) translateY(16px);
+@media (max-width: 640px) {
+    .note-header, .note-body, .note-footer {
+        padding: 1.5rem;
     }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
+    .note-skills-grid {
+        grid-template-columns: 1fr;
     }
-}
-
-@keyframes cursor-blink {
-    0%,
-    100% {
-        opacity: 1;
+    .note-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
     }
-    50% {
-        opacity: 0;
+    .note-header h2 {
+        font-size: 1.75rem;
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .note-overlay,
-    .note-modal,
-    .cursor-blink,
-    .note-close-btn {
-        animation: none !important;
-        transition: none !important;
-    }
-}
-
-/* ---------- mobile ---------- */
-
-@media (max-width: 480px) {
-    .note-modal {
-        max-height: 90vh;
-    }
-    .note-scroll-area {
-        padding: 1.1rem 1.1rem 0.4rem;
-    }
-    .code-line {
-        font-size: 0.78rem;
-        gap: 0.6rem;
-    }
-    .line-num {
-        width: 1.3rem;
-    }
-    .note-prompt {
-        padding: 0.9rem 1.1rem 1.1rem;
-    }
-}
+/* ---------- END OF FILE ---------- */
