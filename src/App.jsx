@@ -29,6 +29,27 @@ function App() {
   const [isStatsOpen, setIsStatsOpen] = useState(false);
   const [isNoteOpen, setIsNoteOpen] = useState(false);
 
+  // Developer Console Easter Egg
+  useEffect(() => {
+    const asciiArt = `
+ ██████╗  █████╗ ██╗   ██╗██████╗  █████╗ ██╗   ██╗
+██╔════╝ ██╔══██╗██║   ██║██╔══██╗██╔══██╗██║   ██║
+███████╗ ███████║██║   ██║██████╔╝███████║██║   ██║
+╚════██║ ██╔══██║██║   ██║██╔══██╗██╔══██║╚██╗ ██╔╝
+███████║ ██║  ██║╚██████╔╝██║  ██║██║  ██║ ╚████╔╝ 
+╚══════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝  
+    `;
+    
+    console.log(
+      `%c${asciiArt}\n%cAh, a fellow developer! 🕵️‍♂️\n\n%cLooking under the hood? I like your style.\nIf you're reading this, we should probably connect.\n\n%cDrop me a line: pandeysaurav878@gmail.com\n\n%c(P.S. Try typing any special character like ! @ # or $ on your keyboard...)`,
+      "color: #00F0FF; font-weight: bold; font-family: monospace;",
+      "color: #8E2DE2; font-size: 20px; font-weight: bold;",
+      "color: #F1F5F9; font-size: 14px; line-height: 1.5;",
+      "color: #10B981; font-size: 14px; font-weight: bold; padding: 4px 0;",
+      "color: #64748B; font-size: 12px; font-style: italic;"
+    );
+  }, []);
+
   // Global key listener for the secret terminal (` key)
   useEffect(() => {
     const handleKeyDown = (e) => {
