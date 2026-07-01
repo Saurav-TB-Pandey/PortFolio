@@ -11,6 +11,7 @@ import {
     ProjectsSkeleton,
     ContactSkeleton,
 } from "./components/SkeletonLoader";
+import confetti from "canvas-confetti";
 import "./App.css";
 
 import About from "./components/About";
@@ -114,31 +115,29 @@ function App() {
                 keyBuffer = ""; // Reset buffer
                 
                 // Shoot Confetti
-                import("canvas-confetti").then(({ default: confetti }) => {
-                    const duration = 3000;
-                    const end = Date.now() + duration;
+                const duration = 3000;
+                const end = Date.now() + duration;
 
-                    (function frame() {
-                        confetti({
-                            particleCount: 5,
-                            angle: 60,
-                            spread: 55,
-                            origin: { x: 0 },
-                            colors: ["#00F0FF", "#8E2DE2", "#10B981"]
-                        });
-                        confetti({
-                            particleCount: 5,
-                            angle: 120,
-                            spread: 55,
-                            origin: { x: 1 },
-                            colors: ["#00F0FF", "#8E2DE2", "#10B981"]
-                        });
+                (function frame() {
+                    confetti({
+                        particleCount: 5,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 },
+                        colors: ["#00F0FF", "#8E2DE2", "#10B981"]
+                    });
+                    confetti({
+                        particleCount: 5,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 },
+                        colors: ["#00F0FF", "#8E2DE2", "#10B981"]
+                    });
 
-                        if (Date.now() < end) {
-                            requestAnimationFrame(frame);
-                        }
-                    }());
-                });
+                    if (Date.now() < end) {
+                        requestAnimationFrame(frame);
+                    }
+                }());
 
                 // Scroll to contact section
                 const contactSection = document.getElementById("contact");
