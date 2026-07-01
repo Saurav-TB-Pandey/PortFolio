@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Terminal as TerminalIcon, X, Maximize2, Minimize2 } from 'lucide-react';
+import confetti from 'canvas-confetti';
 import './SecretTerminal.css';
 
 const SecretTerminal = ({ isOpen, onClose, onOpenStats, onOpenNote }) => {
@@ -93,6 +94,33 @@ const SecretTerminal = ({ isOpen, onClose, onOpenStats, onOpenNote }) => {
         case 'hire':
           document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
           newHistory.push({ type: 'output', text: 'Excellent choice. Routing to secure recruitment channel...' });
+          
+          const duration = 3000;
+          const end = Date.now() + duration;
+
+          (function frame() {
+              confetti({
+                  particleCount: 5,
+                  angle: 60,
+                  spread: 55,
+                  origin: { x: 0 },
+                  colors: ["#00F0FF", "#8E2DE2", "#10B981"]
+              });
+              confetti({
+                  particleCount: 5,
+                  angle: 120,
+                  spread: 55,
+                  origin: { x: 1 },
+                  colors: ["#00F0FF", "#8E2DE2", "#10B981"]
+              });
+
+              if (Date.now() < end) {
+                  requestAnimationFrame(frame);
+              }
+          }());
+          
+          window.dispatchEvent(new CustomEvent("hire-easter-egg"));
+          setTimeout(onClose, 1500); // Close terminal to let them see the form
           break;
         case 'stats':
           newHistory.push({ type: 'system', text: 'ACCESS GRANTED: Opening Dev Stats UI...' });
