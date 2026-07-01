@@ -24,14 +24,6 @@ import SecretTerminal from "./components/SecretTerminal";
 import DevStats from "./components/DevStats";
 import PersonalNote from "./components/PersonalNote";
 
-// Block all console outputs except console.info
-const noop = () => {};
-console.log = noop;
-console.warn = noop;
-console.error = noop;
-console.debug = noop;
-console.trace = noop;
-
 let hasLoggedEasterEgg = false;
 
 function App() {
