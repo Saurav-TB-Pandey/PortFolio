@@ -7,40 +7,20 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
-  // 🔐 Secret Easter Egg: click logo 5x fast
-  const clickCountRef = useRef(0);
-  const clickTimerRef = useRef(null);
+  // 🔐 Secret Easter Egg: double-click logo to toggle
   const [secretActive, setSecretActive] = useState(() => {
     return localStorage.getItem('sk_secret_theme') === 'true';
   });
-  const [secretToast, setSecretToast] = useState(null); // 'activated' | 'deactivated' | null
 
-  const handleLogoSecretClick = () => {
-    clickCountRef.current += 1;
+  const handleLogoDoubleClick = () => {
+    const newState = !secretActive;
+    setSecretActive(newState);
+    localStorage.setItem('sk_secret_theme', newState ? 'true' : 'false');
 
-    // Reset counter after 2 seconds of inactivity
-    clearTimeout(clickTimerRef.current);
-    clickTimerRef.current = setTimeout(() => {
-      clickCountRef.current = 0;
-    }, 2000);
-
-    if (clickCountRef.current >= 5) {
-      clickCountRef.current = 0;
-      clearTimeout(clickTimerRef.current);
-
-      const newState = !secretActive;
-      setSecretActive(newState);
-      localStorage.setItem('sk_secret_theme', newState ? 'true' : 'false');
-
-      if (newState) {
-        document.documentElement.setAttribute('data-theme', 'secret');
-        setSecretToast('activated');
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-        setSecretToast('deactivated');
-      }
-
-      setTimeout(() => setSecretToast(null), 3000);
+    if (newState) {
+      document.documentElement.setAttribute('data-theme', 'secret');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
     }
   };
 
@@ -100,12 +80,8 @@ const Navbar = () => {
           <a
             href="#home"
             className={`nav-logo ${secretActive ? 'secret-logo' : ''}`}
-            onClick={(e) => {
-              e.preventDefault();
-              handleLinkClick('home');
-              handleLogoSecretClick();
-            }}
-            title={secretActive ? '🔓 Secret Mode Active' : ''}
+            onClick={(e) => { e.preventDefault(); handleLinkClick('home'); }}
+            onDoubleClick={handleLogoDoubleClick}
           >
             <Terminal size={22} />
             <span>Saurav</span>.dev
@@ -180,29 +156,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-
-      {/* 🔐 Secret Theme Toast */}
-      {secretToast && (
-        <div className={`secret-toast ${secretToast}`}>
-          {secretToast === 'activated' ? (
-            <>
-              <span className="secret-toast-icon">🔓</span>
-              <div>
-                <strong>Secret Mode Unlocked!</strong>
-                <p>Welcome to the dark side, hacker. 👾</p>
-              </div>
-            </>
-          ) : (
-            <>
-              <span className="secret-toast-icon">🔒</span>
-              <div>
-                <strong>Back to Normal</strong>
-                <p>Secret mode deactivated.</p>
-              </div>
-            </>
-          )}
-        </div>
-      )}
     </>
   );
 };
