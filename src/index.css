@@ -74,6 +74,116 @@
   color: #00ff88 !important;
 }
 
+/* ── Hero ── */
+[data-theme="secret"] .hero-tag {
+  background: rgba(0, 255, 136, 0.07) !important;
+  border-color: rgba(0, 255, 136, 0.15) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.05) !important;
+}
+
+[data-theme="secret"] .hero-glow-circle {
+  background: radial-gradient(circle, rgba(0, 80, 40, 0.2) 0%, rgba(0, 255, 136, 0.05) 50%, transparent 70%) !important;
+}
+
+[data-theme="secret"] .hero-avatar-container {
+  box-shadow: 0 10px 40px rgba(0, 255, 136, 0.2), var(--glass-shadow) !important;
+}
+
+/* ── About ── */
+[data-theme="secret"] .about-domain-item {
+  background: rgba(0, 255, 136, 0.05) !important;
+  border-color: rgba(0, 255, 136, 0.2) !important;
+}
+
+[data-theme="secret"] .code-editor-about {
+  border-color: rgba(0, 255, 136, 0.2) !important;
+}
+
+/* ── Skills ── */
+[data-theme="secret"] .skill-card {
+  background: rgba(0, 255, 136, 0.07) !important;
+  border-color: rgba(0, 255, 136, 0.15) !important;
+}
+
+[data-theme="secret"] .skill-progress-fill {
+  background: linear-gradient(90deg, #00ff88, #00ffcc) !important;
+}
+
+/* ── Projects ── */
+[data-theme="secret"] .project-thumbnail,
+[data-theme="secret"] .project-icon-placeholder {
+  background: linear-gradient(135deg, rgba(0, 60, 30, 0.6) 0%, rgba(0, 255, 136, 0.2) 100%) !important;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.4)) !important;
+}
+
+[data-theme="secret"] .project-tech-tag {
+  background: rgba(0, 255, 136, 0.1) !important;
+  border-color: rgba(0, 255, 136, 0.3) !important;
+  color: #00ff88 !important;
+}
+
+[data-theme="secret"] .filter-btn.active,
+[data-theme="secret"] .filter-btn:hover {
+  background: rgba(0, 255, 136, 0.15) !important;
+  border-color: #00ff88 !important;
+  color: #00ff88 !important;
+}
+
+[data-theme="secret"] .project-badge-top {
+  background: rgba(0, 255, 136, 0.15) !important;
+  color: #00ff88 !important;
+}
+
+/* ── Contact ── */
+[data-theme="secret"] .contact-card-item {
+  background: rgba(0, 255, 136, 0.07) !important;
+  border-color: rgba(0, 255, 136, 0.15) !important;
+}
+
+[data-theme="secret"] .contact-form-panel {
+  background: rgba(0, 255, 136, 0.07) !important;
+  border-color: rgba(0, 255, 136, 0.15) !important;
+}
+
+[data-theme="secret"] .form-input:focus,
+[data-theme="secret"] .form-textarea:focus {
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.2) !important;
+  border-color: rgba(0, 255, 136, 0.4) !important;
+}
+
+[data-theme="secret"] .contact-card-icon {
+  background: rgba(0, 255, 136, 0.1) !important;
+  border-color: rgba(0, 255, 136, 0.2) !important;
+  color: #00ff88 !important;
+}
+
+/* ── Gradient text & accents ── */
+[data-theme="secret"] .gradient-text,
+[data-theme="secret"] .text-gradient,
+[data-theme="secret"] .hero-name {
+  background: linear-gradient(135deg, #00ff88, #00ffcc) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+[data-theme="secret"] .section-line,
+[data-theme="secret"] .divider {
+  background: linear-gradient(90deg, #00ff88, #00ffcc) !important;
+}
+
+/* ── Experience timeline ── */
+[data-theme="secret"] .timeline-dot,
+[data-theme="secret"] .exp-dot {
+  background: #00ff88 !important;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.6) !important;
+}
+
+[data-theme="secret"] .timeline-line,
+[data-theme="secret"] .exp-line {
+  background: linear-gradient(180deg, #00ff88, transparent) !important;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
