@@ -1,19 +1,20 @@
 /* ============================================================
    Personal Note — "found in devtools" terminal easter egg
    Token system:
-   --term-bg      #0a0e0c  base panel (near-black, green-tinted)
-   --term-panel   #0f1613  header / footer strip
-   --term-accent  #00ff88  signature green (prompt, cursor, links)
-   --term-amber   #ffb454  strings / highlighted values
-   --term-muted   #7a8f87  comments / secondary text
-   --term-text    #e6f4ee  primary code text
+   --term-bg      rgba(10, 14, 12, 0.85) /* glassmorphism base */
+   --term-panel   rgba(15, 22, 19, 0.9)
+   --term-accent  #00ff88
+   --term-amber   #fde047 /* Brighter, more readable yellow for strings */
+   --term-muted   #94a3b8 /* Lighter slate for better contrast on comments */
+   --term-text    #f1f5f9 /* Brighter white for plain text */
+   --term-keyword #c084fc /* Purple for keywords to make it pop like a real IDE */
    ============================================================ */
 
 .note-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(3, 8, 6, 0.75);
-    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
     z-index: 10001;
     display: flex;
     justify-content: center;
@@ -24,17 +25,19 @@
 
 .note-modal {
     width: 100%;
-    max-width: 620px;
+    max-width: 700px; /* slightly wider for better readability */
     max-height: 85vh;
     display: flex;
     flex-direction: column;
-    background: var(--term-bg, #0a0e0c);
-    border: 1px solid rgba(0, 255, 136, 0.25);
-    border-radius: 10px;
+    background: var(--term-bg, rgba(10, 14, 12, 0.85));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 12px;
     overflow: hidden;
     box-shadow:
-        0 30px 70px -20px rgba(0, 0, 0, 0.7),
-        0 0 40px rgba(0, 255, 136, 0.08);
+        0 40px 80px -20px rgba(0, 0, 0, 0.8),
+        0 0 50px rgba(0, 255, 136, 0.1);
     animation: note-scale-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     font-family: "Fira Code", "JetBrains Mono", ui-monospace, monospace;
 }
@@ -46,7 +49,7 @@
     align-items: center;
     gap: 0.75rem;
     padding: 0.85rem 1.1rem;
-    background: var(--term-panel, #0f1613);
+    background: var(--term-panel, rgba(15, 22, 19, 0.9));
     border-bottom: 1px solid rgba(0, 255, 136, 0.18);
     flex-shrink: 0;
 }
@@ -58,10 +61,11 @@
 }
 
 .note-dots span {
-    width: 11px;
-    height: 11px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     display: block;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
 }
 
 .note-dots .dot-red {
@@ -78,8 +82,9 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--term-muted, #7a8f87);
-    font-size: 0.8rem;
+    color: var(--term-text, #f1f5f9);
+    font-size: 0.85rem;
+    font-weight: 500;
     letter-spacing: 0.02em;
     min-width: 0;
 }
@@ -97,12 +102,13 @@
 
 .note-badge {
     margin-left: auto;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     letter-spacing: 0.08em;
-    color: var(--term-accent, #00ff88);
-    border: 1px solid rgba(0, 255, 136, 0.35);
+    color: var(--term-bg);
+    background: var(--term-accent, #00ff88);
+    font-weight: 700;
     border-radius: 4px;
-    padding: 0.15rem 0.45rem;
+    padding: 0.2rem 0.5rem;
     flex-shrink: 0;
     white-space: nowrap;
 }
@@ -110,11 +116,12 @@
 .note-close-btn {
     background: transparent;
     border: none;
-    color: var(--term-muted, #7a8f87);
+    color: var(--term-muted, #94a3b8);
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 0.15rem;
+    padding: 0.2rem;
+    margin-left: 0.5rem;
     flex-shrink: 0;
     transition:
         color 0.2s ease,
@@ -123,12 +130,12 @@
 
 .note-close-btn:hover,
 .note-close-btn:focus-visible {
-    color: var(--term-accent, #00ff88);
+    color: #ff5f57;
     transform: rotate(90deg);
 }
 
 .note-close-btn:focus-visible {
-    outline: 2px solid var(--term-accent, #00ff88);
+    outline: 2px solid #ff5f57;
     outline-offset: 3px;
     border-radius: 4px;
 }
@@ -141,7 +148,7 @@
 }
 
 .note-scroll-area::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 .note-scroll-area::-webkit-scrollbar-track {
     background: transparent;
@@ -150,20 +157,31 @@
     background: rgba(0, 255, 136, 0.25);
     border-radius: 10px;
 }
+.note-scroll-area::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 136, 0.4);
+}
 
 .code-line {
     display: flex;
-    gap: 0.85rem;
-    font-size: 0.85rem;
-    line-height: 1.75;
+    gap: 1rem;
+    font-size: 1rem; /* Larger font for readability */
+    line-height: 1.9; /* More breathable line-height */
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.code-line:hover {
+    background-color: rgba(255, 255, 255, 0.04);
 }
 
 .line-num {
     flex-shrink: 0;
-    width: 1.6rem;
+    width: 1.8rem;
     text-align: right;
-    color: rgba(122, 143, 135, 0.45);
+    color: rgba(148, 163, 184, 0.4);
     user-select: none;
+    font-size: 0.9rem;
 }
 
 .line-content {
@@ -174,30 +192,32 @@
 }
 
 .indent-1 .line-content {
-    padding-left: 1.2em;
+    padding-left: 1.5em;
 }
 
 .tok-comment {
-    color: var(--term-muted, #7a8f87);
+    color: var(--term-muted, #94a3b8);
+    font-style: italic;
 }
 .tok-key {
-    color: #7dd3fc;
+    color: var(--term-keyword, #c084fc);
+    font-weight: 600;
 }
 .tok-string {
-    color: var(--term-amber, #ffb454);
+    color: var(--term-amber, #fde047);
 }
 .tok-punct {
-    color: var(--term-muted, #7a8f87);
+    color: var(--term-muted, #94a3b8);
 }
 .tok-plain {
-    color: var(--term-text, #e6f4ee);
+    color: var(--term-text, #f1f5f9);
 }
 .tok-emoji {
     font-style: normal;
 }
 
 .code-line.spacer {
-    height: 0.6rem;
+    height: 0.8rem;
 }
 
 /* ---------- prompt / signature ---------- */
