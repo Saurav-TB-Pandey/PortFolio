@@ -246,22 +246,108 @@
   height: 24px;
   border-radius: 50%;
   z-index: 2;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
 }
 .skeleton-exp-card {
   width: 100%;
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 12px;
   background: var(--bg-card);
+  border: 1px solid var(--border-color);
   position: relative;
-  overflow: hidden;
 }
+
+/* Header inside experience card */
+.skeleton-exp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+}
+
+/* Inner Roles Timeline */
+.skeleton-exp-roles-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  position: relative;
+  padding-left: 2rem;
+}
+.skeleton-exp-roles-container::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+[data-theme="secret"] .skeleton-exp-roles-container::before {
+  background: rgba(0, 255, 136, 0.15);
+}
+
+.skeleton-exp-role-block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skeleton-exp-role-dot {
+  position: absolute;
+  left: -2rem;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-50%);
+}
+[data-theme="secret"] .skeleton-exp-role-dot {
+  background: rgba(0, 255, 136, 0.4);
+}
+
+.skeleton-exp-role-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.skeleton-exp-responsibilities {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skeleton-exp-resp-line {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.skeleton-exp-resp-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+[data-theme="secret"] .skeleton-exp-resp-bullet {
+  background: rgba(0, 255, 136, 0.2);
+}
+
+/* Shimmer overlay for elements that don't have it explicitly */
+.skeleton-timeline-dot::after,
 .skeleton-exp-card::after {
   content: "";
   position: absolute;
   top: 0; left: -100%; width: 100%; height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
   animation: skeleton-shimmer 2s infinite linear;
+  pointer-events: none;
 }
+[data-theme="secret"] .skeleton-timeline-dot::after,
 [data-theme="secret"] .skeleton-exp-card::after {
   background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
 }

@@ -68,11 +68,34 @@ const SkeletonLoader = () => {
             <div key={i} className="skeleton-timeline-item">
               <div className="skeleton-timeline-dot"></div>
               <div className="skeleton-exp-card">
-                <div className="skeleton-line" style={{ width: '40%', height: '24px', marginBottom: '0.5rem' }}></div>
-                <div className="skeleton-line" style={{ width: '25%', height: '16px', marginBottom: '1.5rem' }}></div>
-                <div className="skeleton-line" style={{ width: '100%', marginBottom: '0.5rem' }}></div>
-                <div className="skeleton-line" style={{ width: '90%', marginBottom: '0.5rem' }}></div>
-                <div className="skeleton-line" style={{ width: '95%' }}></div>
+                <div className="skeleton-exp-card-header">
+                  <div>
+                    <div className="skeleton-line" style={{ width: '150px', height: '24px', marginBottom: '0.5rem' }}></div>
+                    <div className="skeleton-line" style={{ width: '100px', height: '12px' }}></div>
+                  </div>
+                  <div className="skeleton-line" style={{ width: '120px', height: '16px' }}></div>
+                </div>
+                
+                <div className="skeleton-exp-roles-container">
+                  {/* Generate 1 role block for most, but maybe 2 for the first one like the real data */}
+                  {[...Array(i === 1 ? 2 : 1)].map((_, rIdx) => (
+                    <div key={rIdx} className="skeleton-exp-role-block">
+                      <div className="skeleton-exp-role-dot"></div>
+                      <div className="skeleton-exp-role-header">
+                        <div className="skeleton-line" style={{ width: '200px', height: '20px' }}></div>
+                        <div className="skeleton-line" style={{ width: '140px', height: '14px' }}></div>
+                      </div>
+                      <div className="skeleton-exp-responsibilities">
+                        {[...Array(3)].map((_, respIdx) => (
+                          <div key={respIdx} className="skeleton-exp-resp-line">
+                            <div className="skeleton-exp-resp-bullet"></div>
+                            <div className="skeleton-line" style={{ width: `${85 + Math.random() * 10}%`, height: '14px' }}></div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
