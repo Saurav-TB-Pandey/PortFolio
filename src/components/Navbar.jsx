@@ -8,6 +8,9 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home');
 
   // 🔐 Secret Easter Egg: double-click logo to toggle
+  const [secretActive, setSecretActive] = useState(() => {
+    return localStorage.getItem('sk_secret_theme') === 'true';
+  });
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [transitionState, setTransitionState] = useState({ x: 0, y: 0, toSecret: false });
 
