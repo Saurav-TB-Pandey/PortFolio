@@ -32,15 +32,18 @@ function App() {
   // Global key listener for the secret terminal (` key)
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Ignore if typing in an input (except the terminal input itself)
+      // Ignore if typing in any input field (contact form, terminal, etc.)
+      const tagName = e.target.tagName;
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tagName) || e.target.isContentEditable) {
+        return;
+      }
+
       // Check if the pressed key is a special character
       const isSpecialChar = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]$/.test(e.key);
       
       if (isSpecialChar) {
-        if (e.target.tagName !== 'INPUT' || e.target.classList.contains('terminal-input')) {
-          e.preventDefault();
-          setIsTerminalOpen(prev => !prev);
-        }
+        e.preventDefault();
+        setIsTerminalOpen(prev => !prev);
       }
     };
     
