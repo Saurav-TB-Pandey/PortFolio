@@ -138,7 +138,7 @@ function App() {
           </p>
         </div>
       </footer>
-      <Analytics />
+      <Analytics debug={false} />
     </div>
   );
 }
