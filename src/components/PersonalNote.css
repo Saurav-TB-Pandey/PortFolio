@@ -1,246 +1,159 @@
 /* ============================================================
-   Personal Note — Premium Human Readable Modal
+   Personal Note — Minimal Letter Style
    ============================================================ */
 
 .note-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 10001;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.25rem;
-    animation: note-fade-in 0.4s ease-out;
+    padding: 1.5rem;
+    animation: note-fade-in 0.3s ease-out;
 }
 
-.note-card {
+.note-paper {
     width: 100%;
-    max-width: 650px;
-    background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.98));
-    border: 1px solid rgba(56, 189, 248, 0.2);
-    border-radius: 16px;
+    max-width: 600px;
+    background: #ffffff;
+    color: #1a1a1a;
+    border-radius: 12px;
+    padding: 3rem 3.5rem;
+    position: relative;
     box-shadow: 
         0 25px 50px -12px rgba(0, 0, 0, 0.5),
-        0 0 40px rgba(56, 189, 248, 0.05);
-    position: relative;
-    overflow: hidden;
-    color: #f8fafc;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    animation: note-slide-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    animation: note-slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.note-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.5), transparent);
+[data-theme="secret"] .note-paper {
+    background: #111111;
+    color: #e5e5e5;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.8),
+        0 0 30px rgba(0, 255, 136, 0.05);
 }
 
 .note-close {
     position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #cbd5e1;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    color: #999;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
-    z-index: 10;
+    border-radius: 6px;
 }
 
 .note-close:hover {
-    background: #ef4444;
-    color: white;
-    border-color: #ef4444;
-    transform: rotate(90deg);
+    color: #111;
+    background: rgba(0, 0, 0, 0.05);
 }
 
-.note-header {
-    padding: 2.5rem 2.5rem 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.note-badge-secret {
-    display: inline-block;
-    background: rgba(16, 185, 129, 0.1);
-    color: #10b981;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    padding: 0.35rem 0.75rem;
-    border-radius: 20px;
-    border: 1px solid rgba(16, 185, 129, 0.2);
-    margin-bottom: 1.25rem;
-}
-
-.note-header h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.02em;
-    color: #f8fafc;
-}
-
-.note-subtitle {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: #94a3b8;
-    max-width: 90%;
-}
-
-.note-body {
-    padding: 2rem 2.5rem;
-}
-
-.note-intro {
-    font-size: 1.05rem;
-    color: #cbd5e1;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-}
-
-.note-skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-    margin-bottom: 2.5rem;
-}
-
-.note-skill-item {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 1.25rem;
-    display: flex;
-    gap: 1rem;
-    transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.note-skill-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-2px);
-    border-color: rgba(56, 189, 248, 0.3);
-}
-
-.note-skill-item.full-width {
-    grid-column: 1 / -1;
-}
-
-.skill-icon {
-    background: rgba(56, 189, 248, 0.1);
-    color: #38bdf8;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-[data-theme="secret"] .skill-icon {
+[data-theme="secret"] .note-close:hover {
     color: #00ff88;
     background: rgba(0, 255, 136, 0.1);
 }
 
-[data-theme="secret"] .note-skill-item:hover {
-    border-color: rgba(0, 255, 136, 0.3);
+.note-content {
+    font-size: 1.15rem;
+    line-height: 1.8;
 }
 
-.skill-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+.note-content p {
+    margin-bottom: 1.5rem;
 }
 
-.skill-content strong {
-    font-size: 0.95rem;
-    color: #f1f5f9;
-}
-
-.skill-content span {
-    font-size: 0.85rem;
-    color: #94a3b8;
-    line-height: 1.5;
-}
-
-.note-looking-for {
-    background: rgba(139, 92, 246, 0.1);
-    border-left: 4px solid #8b5cf6;
-    padding: 1.25rem;
-    border-radius: 0 8px 8px 0;
-}
-
-.note-looking-for h3 {
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #c4b5fd;
-    margin-bottom: 0.5rem;
-}
-
-.note-looking-for p {
-    font-size: 1.05rem;
-    color: #ede9fe;
-}
-
-.note-footer {
-    padding: 1.5rem 2.5rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.note-signature-block p {
-    font-size: 0.9rem;
-    color: #94a3b8;
-    margin-bottom: 0.25rem;
-}
-
-.note-signature-block h4 {
-    font-size: 1.25rem;
-    color: #f8fafc;
-    font-family: 'Outfit', sans-serif;
-}
-
-.note-cta {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: #38bdf8;
-    color: #0f172a;
-    padding: 0.75rem 1.25rem;
-    border-radius: 8px;
+.note-greeting {
+    font-size: 1.35rem;
     font-weight: 600;
+    margin-bottom: 2rem !important;
+    color: #000;
+}
+
+[data-theme="secret"] .note-greeting {
+    color: #fff;
+}
+
+.note-list {
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+}
+
+.note-list li {
+    margin-bottom: 0.85rem;
+    padding-left: 0.5rem;
+}
+
+.note-list li::marker {
+    color: #666;
+}
+
+[data-theme="secret"] .note-list li::marker {
+    color: #00ff88;
+}
+
+.note-list strong {
+    font-weight: 600;
+    color: #000;
+}
+
+[data-theme="secret"] .note-list strong {
+    color: #00ff88;
+}
+
+.note-signature {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="secret"] .note-signature {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.note-signature p {
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    color: #555;
+}
+
+[data-theme="secret"] .note-signature p {
+    color: #aaa;
+}
+
+.note-name {
+    display: inline-block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: color 0.2s;
 }
 
-.note-cta:hover {
-    background: #7dd3fc;
-    transform: translateX(4px);
+.note-name:hover {
+    color: #38bdf8;
 }
 
-[data-theme="secret"] .note-cta {
-    background: #00ff88;
+[data-theme="secret"] .note-name {
+    color: #fff;
 }
 
-[data-theme="secret"] .note-cta:hover {
-    background: #6ee7b7;
+[data-theme="secret"] .note-name:hover {
+    color: #00ff88;
 }
 
 @keyframes note-fade-in {
@@ -251,28 +164,20 @@
 @keyframes note-slide-up {
     from {
         opacity: 0;
-        transform: translateY(20px) scale(0.98);
+        transform: translateY(15px);
     }
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
     }
 }
 
 @media (max-width: 640px) {
-    .note-header, .note-body, .note-footer {
-        padding: 1.5rem;
+    .note-paper {
+        padding: 2.5rem 2rem;
     }
-    .note-skills-grid {
-        grid-template-columns: 1fr;
-    }
-    .note-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.25rem;
-    }
-    .note-header h2 {
-        font-size: 1.75rem;
+    .note-content {
+        font-size: 1.05rem;
     }
 }
 
