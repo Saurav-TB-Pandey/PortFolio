@@ -1,0 +1,195 @@
+.note-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 10001;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: note-fade-in 0.4s ease;
+  padding: 1rem;
+}
+
+[data-theme="secret"] .note-overlay {
+  background: rgba(0, 10, 5, 0.85);
+}
+
+.note-modal {
+  width: 100%;
+  max-width: 550px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+  animation: note-scale-up 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  background-image: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+}
+
+[data-theme="secret"] .note-modal {
+  background: rgba(0, 12, 6, 0.95);
+  border-color: rgba(0, 255, 136, 0.5);
+  box-shadow: 0 0 50px rgba(0, 255, 136, 0.15), inset 0 0 20px rgba(0, 255, 136, 0.05);
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+}
+
+[data-theme="secret"] .note-header {
+  border-bottom-color: rgba(0, 255, 136, 0.3);
+}
+
+.note-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.note-icon {
+  color: #ef4444;
+}
+
+[data-theme="secret"] .note-icon {
+  color: #00ff88;
+}
+
+.note-title h3 {
+  font-size: 1.1rem;
+  font-family: 'Fira Code', monospace;
+  color: var(--text-primary);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+[data-theme="secret"] .note-title h3 {
+  color: #00ff88;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.note-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.note-close-btn:hover {
+  color: var(--text-primary);
+  transform: rotate(90deg);
+}
+
+[data-theme="secret"] .note-close-btn {
+  color: #00ff88;
+}
+
+[data-theme="secret"] .note-close-btn:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #00ff88;
+}
+
+.note-content {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+[data-theme="secret"] .note-content {
+  color: rgba(0, 255, 136, 0.85);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+}
+
+.note-content p {
+  margin-bottom: 1.5rem;
+}
+
+.greeting {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+}
+
+[data-theme="secret"] .greeting {
+  color: #00ff88;
+}
+
+.note-signature {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.note-signature p {
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+.signature-name {
+  font-family: 'Dancing Script', cursive, sans-serif;
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+[data-theme="secret"] .signature-name {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.2rem;
+  color: #00ff88;
+  font-style: normal;
+}
+
+.signature-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+[data-theme="secret"] .signature-icons {
+  color: rgba(0, 255, 136, 0.6);
+}
+
+.heart-icon {
+  color: #ef4444;
+  animation: heartbeat 1.5s infinite;
+}
+
+[data-theme="secret"] .heart-icon {
+  color: #00ff88;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes note-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes note-scale-up {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
