@@ -11,17 +11,29 @@ const Navbar = () => {
   const [secretActive, setSecretActive] = useState(() => {
     return localStorage.getItem('sk_secret_theme') === 'true';
   });
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleLogoDoubleClick = () => {
-    const newState = !secretActive;
-    setSecretActive(newState);
-    localStorage.setItem('sk_secret_theme', newState ? 'true' : 'false');
+    if (isTransitioning) return; // Prevent spam clicking during transition
+    setIsTransitioning(true);
 
-    if (newState) {
-      document.documentElement.setAttribute('data-theme', 'secret');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-    }
+    // Switch theme halfway through the flash animation (400ms)
+    setTimeout(() => {
+      const newState = !secretActive;
+      setSecretActive(newState);
+      localStorage.setItem('sk_secret_theme', newState ? 'true' : 'false');
+
+      if (newState) {
+        document.documentElement.setAttribute('data-theme', 'secret');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+    }, 400);
+
+    // Remove overlay after animation completes (800ms)
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 800);
   };
 
   // Apply secret theme on mount if previously activated
@@ -156,6 +168,9 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
+      {/* Cyberpunk Scanline Transition Overlay */}
+      {isTransitioning && <div className="theme-transition-overlay"></div>}
     </>
   );
 };

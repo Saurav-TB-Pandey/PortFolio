@@ -151,3 +151,44 @@
   text-shadow: 0 0 10px rgba(0, 255, 136, 0.8), 0 0 20px rgba(0, 255, 136, 0.4) !important;
 }
 
+/* ============================================
+   Theme Transition Overlay
+   ============================================ */
+.theme-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #00ff88;
+  z-index: 999999;
+  pointer-events: none;
+  animation: cyber-flash 0.8s cubic-bezier(0.8, 0, 0.2, 1) forwards;
+  mix-blend-mode: color; /* Creates a cool color-inverting effect */
+}
+
+@keyframes cyber-flash {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 0%, 0 0%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  50% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 1;
+    background: #00ff88;
+  }
+  51% {
+    background: #fff; /* White flash at the exact flip moment */
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    opacity: 0;
+  }
+}
+
