@@ -5,7 +5,7 @@ import { configureBoneyard } from 'boneyard-js/react'
 
 import _portfolio_content from './portfolio-content.bones.json'
 
-configureBoneyard({"color":"rgba(0, 255, 136, 0.05)","darkColor":"rgba(0, 255, 136, 0.05)","animate":"shimmer","shimmerColor":"rgba(0, 255, 136, 0.15)","darkShimmerColor":"rgba(0, 255, 136, 0.15)","speed":"2s","shimmerAngle":110})
+configureBoneyard({"color":"var(--bg-card)","darkColor":"var(--bg-card)","animate":"shimmer","shimmerColor":"var(--border-color)","darkShimmerColor":"var(--border-color)","speed":"2s","shimmerAngle":110})
 
 registerBones({
   "portfolio-content": _portfolio_content,

@@ -1,11 +1,11 @@
 {
   "breakpoints": [375, 768, 1280],
   "out": "./src/bones",
-  "color": "rgba(0, 255, 136, 0.05)",
-  "darkColor": "rgba(0, 255, 136, 0.05)",
+  "color": "var(--bg-card)",
+  "darkColor": "var(--bg-card)",
   "animate": "shimmer",
-  "shimmerColor": "rgba(0, 255, 136, 0.15)",
-  "darkShimmerColor": "rgba(0, 255, 136, 0.15)",
+  "shimmerColor": "var(--border-color)",
+  "darkShimmerColor": "var(--border-color)",
   "speed": "2s",
   "shimmerAngle": 110,
   "wait": 1000
