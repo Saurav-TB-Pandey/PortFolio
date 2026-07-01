@@ -2,8 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import { Skeleton } from 'boneyard-js/react';
-import './bones/registry'; // Boneyard skeleton registry
+import SkeletonLoader from './components/SkeletonLoader';
 import './App.css';
 
 // Lazy load below-the-fold components
@@ -19,11 +18,7 @@ function App() {
       <Navbar />
       <Hero />
       
-      <Suspense fallback={
-        <Skeleton name="portfolio-content" loading={true}>
-          <div style={{ minHeight: '3000px', width: '100%' }}></div>
-        </Skeleton>
-      }>
+      <Suspense fallback={<SkeletonLoader />}>
         <About />
         <Skills />
         <Experience />
