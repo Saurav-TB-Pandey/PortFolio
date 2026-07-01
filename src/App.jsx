@@ -50,21 +50,31 @@ function App() {
       <Navbar />
       <Hero />
       
-      <LazySection fallback={<AboutSkeleton />}>
-        <About />
-      </LazySection>
-      <LazySection fallback={<SkillsSkeleton />}>
-        <Skills />
-      </LazySection>
-      <LazySection fallback={<ExperienceSkeleton />}>
-        <Experience />
-      </LazySection>
-      <LazySection fallback={<ProjectsSkeleton />}>
-        <Projects />
-      </LazySection>
-      <LazySection fallback={<ContactSkeleton />}>
-        <Contact />
-      </LazySection>
+      <div id="about">
+        <LazySection fallback={<AboutSkeleton />}>
+          <About />
+        </LazySection>
+      </div>
+      <div id="skills">
+        <LazySection fallback={<SkillsSkeleton />}>
+          <Skills />
+        </LazySection>
+      </div>
+      <div id="experience">
+        <LazySection fallback={<ExperienceSkeleton />}>
+          <Experience />
+        </LazySection>
+      </div>
+      <div id="projects">
+        <LazySection fallback={<ProjectsSkeleton />}>
+          <Projects />
+        </LazySection>
+      </div>
+      <div id="contact">
+        <LazySection fallback={<ContactSkeleton />}>
+          <Contact />
+        </LazySection>
+      </div>
       
       {/* Secret Easter Egg Overlays */}
       <SecretTerminal 
