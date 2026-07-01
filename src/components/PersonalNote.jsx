@@ -24,6 +24,7 @@ const PersonalNote = ({ isOpen, onClose }) => {
             onClick={onClose}
             role="dialog"
             aria-modal="true"
+            aria-labelledby="note-greeting"
         >
             <div className="note-paper" onClick={(e) => e.stopPropagation()}>
                 <button
@@ -35,33 +36,71 @@ const PersonalNote = ({ isOpen, onClose }) => {
                     <X size={22} />
                 </button>
 
-                <div className="note-content">
-                    <p className="note-greeting">Hey \u2014 you found the secret note. <span role="img" aria-label="detective">🕵️</span></p>
-                    
-                    <p>
-                        Most people never look this deep into a portfolio. You did \u2014 that already tells me you care about the details.
-                    </p>
-                    
-                    <p>
-                        I built this portfolio not just as a digital resume, but as a playground. Here is a quick rundown of what I bring to the table:
-                    </p>
+                <div className="note-scroll">
+                    <div className="note-content">
+                        <p className="note-greeting" id="note-greeting">
+                            Hey — you found the secret note.{" "}
+                            <span role="img" aria-label="detective">
+                                🕵️
+                            </span>
+                        </p>
 
-                    <ul className="note-list">
-                        <li><strong>Frontend:</strong> React, obsessive about motion & detail.</li>
-                        <li><strong>Backend:</strong> Node/Express APIs built to survive 3am traffic.</li>
-                        <li><strong>Databases:</strong> PostgreSQL, MySQL & MongoDB \u2014 relational or NoSQL, whichever fits.</li>
-                        <li><strong>Cloud:</strong> AWS (EC2, S3, Lambda, RDS) and whatever else ships it.</li>
-                        <li><strong>Payments:</strong> Stripe, Razorpay & Thawani \u2014 checkout flows that just work.</li>
-                        <li><strong>Integrations:</strong> Xero, PRODA, Telnyx, Mistral AI, Twilio, and counting.</li>
-                    </ul>
+                        <p>
+                            Most people don't look this closely at a portfolio.
+                            You did — and that already tells me you're someone
+                            who pays attention to details, which is exactly how
+                            I like to work too.
+                        </p>
 
-                    <p>
-                        <strong>What I'm looking for:</strong> Teams building something ambitious, scalable, and user-focused.
-                    </p>
+                        <p>
+                            I didn't build this site to just list my skills. I
+                            wanted it to feel like something I'd genuinely be
+                            proud to hand someone — fast, smooth, and thought
+                            through down to the smallest interaction.
+                        </p>
 
-                    <div className="note-signature">
-                        <p>Looking forward to connecting,</p>
-                        <a href="mailto:pandeysaurav878@gmail.com" className="note-name">Saurav Kumar</a>
+                        <p>
+                            In plain terms, here's what I actually do: I build
+                            complete products, not just the parts you see on
+                            screen. That means designing interfaces people enjoy
+                            using, and also building everything running quietly
+                            behind the scenes — the systems that store
+                            information safely, keep a website up and running
+                            without hiccups, and make sure things like payments
+                            go through smoothly every time.
+                        </p>
+
+                        <p>
+                            I've worked with tools like{" "}
+                            <strong>PostgreSQL, MySQL, and MongoDB</strong> to
+                            keep data organized, <strong>AWS</strong> to keep
+                            everything running reliably in the cloud, and
+                            payment systems like{" "}
+                            <strong>Stripe, Razorpay, and Thawani</strong> so
+                            customers can check out without a hitch. I've also
+                            connected apps to outside services — things like{" "}
+                            <strong>Xero</strong> for accounting,{" "}
+                            <strong>Twilio</strong> and <strong>Telnyx</strong>{" "}
+                            for messaging, <strong>PRODA</strong>, and AI tools
+                            like <strong>Mistral</strong> — so different systems
+                            can talk to each other and just work.
+                        </p>
+
+                        <p>
+                            <strong>What I'm looking for:</strong> a team
+                            building something ambitious, that cares about
+                            getting the details right as much as I do.
+                        </p>
+
+                        <div className="note-signature">
+                            <p>Looking forward to connecting,</p>
+                            <a
+                                href="mailto:pandeysaurav878@gmail.com"
+                                className="note-name"
+                            >
+                                Saurav Kumar
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
