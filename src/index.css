@@ -110,10 +110,25 @@
 }
 
 /* ── Projects ── */
-[data-theme="secret"] .project-thumbnail,
+[data-theme="secret"] .project-thumbnail {
+  background: linear-gradient(135deg, rgba(0, 20, 10, 0.9) 0%, rgba(0, 60, 30, 0.7) 100%) !important;
+  border-bottom-color: rgba(0, 255, 136, 0.15) !important;
+}
+
 [data-theme="secret"] .project-icon-placeholder {
-  background: linear-gradient(135deg, rgba(0, 60, 30, 0.6) 0%, rgba(0, 255, 136, 0.2) 100%) !important;
-  filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.4)) !important;
+  color: #00ff88 !important;
+  filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.7)) !important;
+}
+
+[data-theme="secret"] .project-badge-top {
+  background: rgba(0, 10, 5, 0.9) !important;
+  border-color: rgba(0, 255, 136, 0.4) !important;
+  color: #00ff88 !important;
+}
+
+[data-theme="secret"] .project-footer {
+  background: rgba(0, 10, 5, 0.4) !important;
+  border-top-color: rgba(0, 255, 136, 0.08) !important;
 }
 
 [data-theme="secret"] .project-tech-tag {
@@ -129,10 +144,7 @@
   color: #00ff88 !important;
 }
 
-[data-theme="secret"] .project-badge-top {
-  background: rgba(0, 255, 136, 0.15) !important;
-  color: #00ff88 !important;
-}
+/* badge-top already handled above */
 
 /* ── Contact ── */
 [data-theme="secret"] .contact-card-item {
@@ -177,6 +189,25 @@
 [data-theme="secret"] .exp-dot {
   background: #00ff88 !important;
   box-shadow: 0 0 10px rgba(0, 255, 136, 0.6) !important;
+}
+
+/* ── Footer ── */
+[data-theme="secret"] .footer {
+  background: rgba(0, 8, 0, 0.9) !important;
+  border-top-color: rgba(0, 255, 136, 0.15) !important;
+}
+
+[data-theme="secret"] .footer-logo {
+  color: #00ff88 !important;
+  text-shadow: 0 0 12px rgba(0, 255, 136, 0.6) !important;
+}
+
+[data-theme="secret"] .footer-quote {
+  color: rgba(0, 255, 136, 0.5) !important;
+}
+
+[data-theme="secret"] .footer-text {
+  color: rgba(0, 255, 136, 0.35) !important;
 }
 
 [data-theme="secret"] .timeline-line,
