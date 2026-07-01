@@ -1,164 +1,156 @@
 /* ============================================================
-   Personal Note — Minimal Letter Style
+   Personal Note — Minimal Letter Style (Theme Integrated)
    ============================================================ */
 
 .note-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 10001;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.5rem;
+    padding: clamp(0.75rem, 4vw, 1.5rem);
     animation: note-fade-in 0.3s ease-out;
 }
 
+/* Outer shell: fixed chrome (close button) + bounded height. */
 .note-paper {
     width: 100%;
     max-width: 600px;
-    background: #ffffff;
-    color: #1a1a1a;
+    max-height: min(85vh, 720px);
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: var(--text-main);
     border-radius: 12px;
-    padding: 3rem 3.5rem;
     position: relative;
+    border: 1px solid var(--border-color);
     box-shadow: 
         0 25px 50px -12px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(0, 0, 0, 0.05);
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        var(--neon-shadow, 0 0 20px rgba(0, 240, 255, 0.1));
+    font-family: var(--font-sans, 'Outfit', sans-serif);
     animation: note-slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
 }
 
-[data-theme="secret"] .note-paper {
-    background: #111111;
-    color: #e5e5e5;
-    border: 1px solid rgba(0, 255, 136, 0.2);
-    box-shadow: 
-        0 25px 50px -12px rgba(0, 0, 0, 0.8),
-        0 0 30px rgba(0, 255, 136, 0.05);
+/* Scrollable body */
+.note-scroll {
+    overflow-y: auto;
+    padding: clamp(2.25rem, 6vw, 3rem) clamp(1.5rem, 6vw, 3.5rem)
+        clamp(1.75rem, 5vw, 3rem);
+    -webkit-overflow-scrolling: touch;
+}
+
+.note-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+.note-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+.note-scroll::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+.note-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
 }
 
 .note-close {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: transparent;
-    border: none;
-    color: #999;
-    width: 32px;
-    height: 32px;
+    top: clamp(0.85rem, 3vw, 1.5rem);
+    right: clamp(0.85rem, 3vw, 1.5rem);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.2s ease;
-    border-radius: 6px;
+    transition: var(--transition, all 0.2s ease);
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.note-close:hover {
-    color: #111;
-    background: rgba(0, 0, 0, 0.05);
+.note-close:hover,
+.note-close:focus-visible {
+    color: #fff;
+    background: var(--primary);
+    border-color: var(--primary);
 }
 
-[data-theme="secret"] .note-close:hover {
-    color: #00ff88;
-    background: rgba(0, 255, 136, 0.1);
+.note-close:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
 }
 
 .note-content {
-    font-size: 1.15rem;
+    font-size: clamp(0.98rem, 2.4vw, 1.15rem);
     line-height: 1.8;
 }
 
 .note-content p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.4rem;
+    word-wrap: break-word;
+    color: var(--text-main);
 }
 
 .note-greeting {
-    font-size: 1.35rem;
+    font-size: clamp(1.15rem, 3vw, 1.35rem);
     font-weight: 600;
-    margin-bottom: 2rem !important;
-    color: #000;
+    margin-bottom: 1.75rem !important;
+    color: var(--primary);
+    padding-right: 2.5rem;
 }
 
-[data-theme="secret"] .note-greeting {
-    color: #fff;
-}
-
-.note-list {
-    margin: 2rem 0;
-    padding-left: 1.5rem;
-}
-
-.note-list li {
-    margin-bottom: 0.85rem;
-    padding-left: 0.5rem;
-}
-
-.note-list li::marker {
-    color: #666;
-}
-
-[data-theme="secret"] .note-list li::marker {
-    color: #00ff88;
-}
-
-.note-list strong {
+.note-content strong {
     font-weight: 600;
-    color: #000;
-}
-
-[data-theme="secret"] .note-list strong {
-    color: #00ff88;
+    color: var(--primary);
 }
 
 .note-signature {
-    margin-top: 3.5rem;
+    margin-top: 2.5rem;
     padding-top: 1.5rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="secret"] .note-signature {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border-color);
 }
 
 .note-signature p {
     margin-bottom: 0.5rem;
     font-style: italic;
-    color: #555;
-}
-
-[data-theme="secret"] .note-signature p {
-    color: #aaa;
+    color: var(--text-muted);
 }
 
 .note-name {
     display: inline-block;
-    font-family: 'Outfit', sans-serif;
-    font-size: 1.5rem;
+    font-family: var(--font-sans, 'Outfit', sans-serif);
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     font-weight: 700;
-    color: #111;
+    color: var(--text-main);
     text-decoration: none;
     transition: color 0.2s;
+    word-break: break-word;
 }
 
-.note-name:hover {
-    color: #38bdf8;
-}
-
-[data-theme="secret"] .note-name {
-    color: #fff;
-}
-
-[data-theme="secret"] .note-name:hover {
-    color: #00ff88;
+.note-name:hover,
+.note-name:focus-visible {
+    color: var(--primary);
+    text-shadow: var(--neon-shadow);
 }
 
 @keyframes note-fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes note-slide-up {
@@ -172,12 +164,51 @@
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .note-overlay,
+    .note-paper,
+    .note-close {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Tablets and small laptops */
 @media (max-width: 640px) {
     .note-paper {
-        padding: 2.5rem 2rem;
+        max-height: 88vh;
+        border-radius: 10px;
     }
-    .note-content {
-        font-size: 1.05rem;
+}
+
+/* Phones */
+@media (max-width: 420px) {
+    .note-overlay {
+        padding: 0.6rem;
+    }
+    .note-paper {
+        max-height: 92vh;
+        border-radius: 8px;
+    }
+    .note-close {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* Short / landscape viewports (common on phones held sideways) */
+@media (max-height: 560px) {
+    .note-paper {
+        max-height: 94vh;
+    }
+    .note-scroll {
+        padding-top: 2.75rem;
+    }
+    .note-greeting {
+        margin-bottom: 1rem !important;
+    }
+    .note-content p {
+        margin-bottom: 1rem;
     }
 }
 
