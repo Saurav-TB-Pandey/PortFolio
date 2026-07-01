@@ -13,6 +13,7 @@
     "@vercel/analytics": "^2.0.1",
     "canvas-confetti": "^1.9.4",
     "lucide-react": "^1.21.0",
+    "matter-js": "^0.20.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },

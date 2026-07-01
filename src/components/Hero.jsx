@@ -99,7 +99,14 @@ const Hero = () => {
         <div className="hero-visual">
           <div className="hero-glow-circle"></div>
           <div className="hero-avatar-container">
-            <div className="hero-avatar-placeholder">
+            <div 
+              className="hero-avatar-placeholder" 
+              onClick={async () => {
+                const { triggerGravity } = await import('../utils/gravity');
+                triggerGravity();
+              }}
+              style={{ cursor: 'crosshair' }}
+            >
               <Code2 size={70} strokeWidth={1.5} />
               <div style={{ marginTop: '1rem', fontWeight: 600, fontSize: '1.2rem', fontFamily: 'var(--font-sans)' }}>
                 &lt; MERN Specialist /&gt;
