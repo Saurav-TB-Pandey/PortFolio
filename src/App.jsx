@@ -24,6 +24,8 @@ import SecretTerminal from './components/SecretTerminal';
 import DevStats from './components/DevStats';
 import PersonalNote from './components/PersonalNote';
 
+let hasLoggedEasterEgg = false;
+
 function App() {
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [isStatsOpen, setIsStatsOpen] = useState(false);
@@ -31,6 +33,9 @@ function App() {
 
   // Developer Console Easter Egg
   useEffect(() => {
+    if (hasLoggedEasterEgg) return;
+    hasLoggedEasterEgg = true;
+    
     const asciiArt = `
  ██████╗  █████╗ ██╗   ██╗██████╗  █████╗ ██╗   ██╗
 ██╔════╝ ██╔══██╗██║   ██║██╔══██╗██╔══██╗██║   ██║
