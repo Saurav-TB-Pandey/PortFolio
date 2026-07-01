@@ -139,14 +139,8 @@ function App() {
                     }
                 }());
 
-                // Scroll to contact section
-                const contactSection = document.getElementById("contact");
-                if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: "smooth" });
-                    
-                    // Dispatch custom event to tell Contact component to pre-fill
-                    window.dispatchEvent(new CustomEvent("hire-easter-egg"));
-                }
+                // Dispatch custom event to tell Contact component to pre-fill and scroll
+                window.dispatchEvent(new CustomEvent("hire-easter-egg"));
             }
         };
 

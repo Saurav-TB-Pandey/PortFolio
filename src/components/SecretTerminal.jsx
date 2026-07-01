@@ -92,7 +92,6 @@ const SecretTerminal = ({ isOpen, onClose, onOpenStats, onOpenNote }) => {
           newHistory.push({ type: 'output', text: 'Establishing secure communication channel...' });
           break;
         case 'hire':
-          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
           newHistory.push({ type: 'output', text: 'Excellent choice. Routing to secure recruitment channel...' });
           
           const duration = 3000;

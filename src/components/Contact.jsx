@@ -19,6 +19,16 @@ const Contact = () => {
                 subject: "Top Secret: I found the 'HIRE' Easter Egg! 🎉",
                 message: "Hi Saurav,\n\nI was typing around on your portfolio and triggered the confetti easter egg! I love the attention to detail. Let's chat about a potential role.",
             }));
+
+            // Robust scrolling to defeat LazyLoad layout shifts
+            setTimeout(() => {
+                const contactEl = document.getElementById('contact');
+                if (contactEl) {
+                    contactEl.scrollIntoView({ behavior: 'smooth' });
+                    // Backup scroll in case lazy-loaded images/sections shifted the page mid-scroll
+                    setTimeout(() => contactEl.scrollIntoView({ behavior: 'smooth' }), 600);
+                }
+            }, 100);
         };
 
         window.addEventListener("hire-easter-egg", handleHireEasterEgg);
