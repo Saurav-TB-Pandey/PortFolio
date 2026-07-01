@@ -25,6 +25,55 @@
   --neon-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
 }
 
+/* 🔐 SECRET THEME — Cyberpunk / Matrix Mode */
+[data-theme="secret"] {
+  --bg-color: #000800;
+  --bg-card: rgba(0, 20, 5, 0.6);
+  --bg-card-hover: rgba(0, 35, 10, 0.8);
+  --border-color: rgba(0, 255, 136, 0.12);
+  --border-glow: rgba(0, 255, 136, 0.4);
+
+  --primary: #00ff88;
+  --primary-rgb: 0, 255, 136;
+  --secondary: #00cc66;
+  --secondary-light: #00994d;
+  --accent: #00ffcc;
+
+  --text-main: #ccffe0;
+  --text-muted: #66cc99;
+  --text-dark: #339966;
+
+  --neon-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+[data-theme="secret"] body {
+  background-color: var(--bg-color);
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(0, 255, 136, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(0, 204, 102, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(0, 20, 5, 0.5) 0%, var(--bg-color) 80%);
+}
+
+[data-theme="secret"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00ff88, #00cc66);
+}
+
+/* Matrix rain-like text glow on secret mode */
+[data-theme="secret"] .hero-title,
+[data-theme="secret"] .section-title {
+  text-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+}
+
+[data-theme="secret"] .btn-primary {
+  background: linear-gradient(135deg, #00ff88, #00cc66) !important;
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.4) !important;
+}
+
+[data-theme="secret"] .nav-link.active,
+[data-theme="secret"] .nav-link:hover {
+  color: #00ff88 !important;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
