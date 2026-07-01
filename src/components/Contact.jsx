@@ -11,6 +11,20 @@ const Contact = () => {
     });
     const [status, setStatus] = useState(null); // 'sending', 'success', 'error'
 
+    // Listen for the "HIRE" easter egg custom event
+    useEffect(() => {
+        const handleHireEasterEgg = () => {
+            setFormData((prev) => ({
+                ...prev,
+                subject: "Top Secret: I found the 'HIRE' Easter Egg! 🎉",
+                message: "Hi Saurav,\n\nI was typing around on your portfolio and triggered the confetti easter egg! I love the attention to detail. Let's chat about a potential role.",
+            }));
+        };
+
+        window.addEventListener("hire-easter-egg", handleHireEasterEgg);
+        return () => window.removeEventListener("hire-easter-egg", handleHireEasterEgg);
+    }, []);
+
     const suggestions = [
         {
             label: "💼 Hire Saurav",

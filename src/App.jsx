@@ -88,6 +88,72 @@ function App() {
         };
     }, []);
 
+    // HIRE Confetti Easter Egg
+    useEffect(() => {
+        let keyBuffer = "";
+        const secretWord = "hire";
+
+        const handleTyping = (e) => {
+            // Ignore if typing inside input fields so they can actually type "hire" in messages
+            const tagName = e.target.tagName;
+            if (
+                ["INPUT", "TEXTAREA", "SELECT"].includes(tagName) ||
+                e.target.isContentEditable
+            ) {
+                return;
+            }
+
+            keyBuffer += e.key.toLowerCase();
+
+            // Keep only the last 4 characters
+            if (keyBuffer.length > secretWord.length) {
+                keyBuffer = keyBuffer.slice(-secretWord.length);
+            }
+
+            if (keyBuffer === secretWord) {
+                keyBuffer = ""; // Reset buffer
+                
+                // Shoot Confetti
+                import("canvas-confetti").then(({ default: confetti }) => {
+                    const duration = 3000;
+                    const end = Date.now() + duration;
+
+                    (function frame() {
+                        confetti({
+                            particleCount: 5,
+                            angle: 60,
+                            spread: 55,
+                            origin: { x: 0 },
+                            colors: ["#00F0FF", "#8E2DE2", "#10B981"]
+                        });
+                        confetti({
+                            particleCount: 5,
+                            angle: 120,
+                            spread: 55,
+                            origin: { x: 1 },
+                            colors: ["#00F0FF", "#8E2DE2", "#10B981"]
+                        });
+
+                        if (Date.now() < end) {
+                            requestAnimationFrame(frame);
+                        }
+                    }());
+                });
+
+                // Scroll to contact section
+                const contactSection = document.getElementById("contact");
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: "smooth" });
+                    
+                    // Dispatch custom event to tell Contact component to pre-fill
+                    window.dispatchEvent(new CustomEvent("hire-easter-egg"));
+                }
+            }
+        };
+
+        window.addEventListener("keydown", handleTyping);
+        return () => window.removeEventListener("keydown", handleTyping);
+    }, []);
     return (
         <div className="app">
             <Navbar />
