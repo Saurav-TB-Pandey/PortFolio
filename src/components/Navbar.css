@@ -152,42 +152,43 @@
 }
 
 /* ============================================
-   Theme Transition Overlay
+   Premium Theme Transition Overlay
    ============================================ */
 .theme-transition-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #00ff88;
+  inset: 0;
   z-index: 999999;
   pointer-events: none;
-  animation: cyber-flash 0.8s cubic-bezier(0.8, 0, 0.2, 1) forwards;
-  mix-blend-mode: color; /* Creates a cool color-inverting effect */
+  /* Start as a tiny dot exactly where the user clicked */
+  clip-path: circle(0px at var(--x, 50%) var(--y, 50%));
+  animation: premium-circle-reveal 0.9s cubic-bezier(0.64, 0, 0.09, 1) forwards;
 }
 
-@keyframes cyber-flash {
+/* Background color matches the theme we are transitioning INTO */
+.theme-transition-overlay.to-secret {
+  background: #000800; /* Deep matrix green/black */
+}
+
+.theme-transition-overlay.to-normal {
+  background: #050814; /* Original dark blue */
+}
+
+@keyframes premium-circle-reveal {
   0% {
-    clip-path: polygon(0 0, 100% 0, 100% 0%, 0 0%);
-    opacity: 0;
+    clip-path: circle(0px at var(--x) var(--y));
+    opacity: 1;
   }
-  30% {
-    opacity: 0.8;
+  45% {
+    /* Expand to cover the entire screen diagonally */
+    clip-path: circle(150vmax at var(--x) var(--y));
+    opacity: 1;
   }
   50% {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: circle(150vmax at var(--x) var(--y));
     opacity: 1;
-    background: #00ff88;
-  }
-  51% {
-    background: #fff; /* White flash at the exact flip moment */
-  }
-  70% {
-    opacity: 0.8;
   }
   100% {
-    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    clip-path: circle(150vmax at var(--x) var(--y));
     opacity: 0;
   }
 }

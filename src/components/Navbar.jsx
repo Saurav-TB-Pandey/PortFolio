@@ -8,16 +8,22 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home');
 
   // 🔐 Secret Easter Egg: double-click logo to toggle
-  const [secretActive, setSecretActive] = useState(() => {
-    return localStorage.getItem('sk_secret_theme') === 'true';
-  });
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitionState, setTransitionState] = useState({ x: 0, y: 0, toSecret: false });
 
-  const handleLogoDoubleClick = () => {
+  const handleLogoDoubleClick = (e) => {
     if (isTransitioning) return; // Prevent spam clicking during transition
+    
+    // Capture exact mouse coordinates for the premium ripple effect
+    setTransitionState({
+      x: e.clientX,
+      y: e.clientY,
+      toSecret: !secretActive
+    });
+    
     setIsTransitioning(true);
 
-    // Switch theme halfway through the flash animation (400ms)
+    // Switch theme exactly when the circle covers the screen (450ms)
     setTimeout(() => {
       const newState = !secretActive;
       setSecretActive(newState);
@@ -28,12 +34,12 @@ const Navbar = () => {
       } else {
         document.documentElement.removeAttribute('data-theme');
       }
-    }, 400);
+    }, 450);
 
-    // Remove overlay after animation completes (800ms)
+    // Remove overlay after animation completes (900ms)
     setTimeout(() => {
       setIsTransitioning(false);
-    }, 800);
+    }, 900);
   };
 
   // Apply secret theme on mount if previously activated
@@ -169,8 +175,16 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Cyberpunk Scanline Transition Overlay */}
-      {isTransitioning && <div className="theme-transition-overlay"></div>}
+      {/* Premium Circular Reveal Transition */}
+      {isTransitioning && (
+        <div 
+          className={`theme-transition-overlay ${transitionState.toSecret ? 'to-secret' : 'to-normal'}`}
+          style={{ 
+            '--x': `${transitionState.x}px`, 
+            '--y': `${transitionState.y}px` 
+          }}
+        ></div>
+      )}
     </>
   );
 };
